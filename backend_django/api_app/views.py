@@ -4,8 +4,12 @@ from rest_framework import permissions, status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .serializers import UserSerializer, UserSerializerWithToken
+from .serializers import UserSerializer, UserSerializerWithToken, NewsListSerializer, NewsArticleSerializer
+from rest_framework import viewsets
+from . import models
 
+
+# ----- User -----
 
 @api_view(['GET'])
 def current_user(request):
@@ -31,3 +35,16 @@ class UserList(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+# ----- NewsList -----
+
+class NewsListViewSet(viewsets.ModelViewSet):
+    queryset = models.NewsList.objects.all()
+    serializer_class = NewsListSerializer
+
+# ----- NewsArticle -----
+
+class NewsArticleViewSet(viewsets.ModelViewSet):
+    queryset = models.NewsArticle.objects.all()
+    serializer_class = NewsArticleSerializer

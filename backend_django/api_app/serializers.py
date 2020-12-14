@@ -1,11 +1,44 @@
 from rest_framework import serializers
 from rest_framework_jwt.settings import api_settings
 from django.contrib.auth.models import User
+from .models import NewsList, NewsArticle
+
+
+# ----- NewsArticle -----
+
+
+class NewsArticleSerializer(serializers.ModelSerializer):
+    id = serializers.ReadOnlyField()
+    created_at = serializers.ReadOnlyField()
+
+    class Meta:
+        model = NewsArticle
+        fields = ['id', 'title', 'author', 'description', 'url', 'created_at', 'newslist']
+
+
+# ----- NewsList -----
+
+
+class NewsListSerializer(serializers.ModelSerializer):
+    id = serializers.ReadOnlyField()
+    created_at = serializers.ReadOnlyField()
+    articles = NewsArticleSerializer(source='newsarticle', many=True, read_only=True)
+    
+    class Meta:
+        model = NewsList
+        fields = ['id', 'name', 'created_at', 'user', 'articles']
+
+
+# ----- User -----
+
 
 class UserSerializer(serializers.ModelSerializer):
+    id = serializers.ReadOnlyField()
+    newslists = NewsListSerializer(source='newslist', many=True, read_only=True)
+
     class Meta:
         model = User
-        fields = ['id', 'username']
+        fields = ['id', 'first_name', 'last_name', 'username', 'email', 'newslists']
 
 
 class UserSerializerWithToken(serializers.ModelSerializer):
