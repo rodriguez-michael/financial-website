@@ -1,31 +1,20 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, {useContext} from 'react'
+import UserContext from '../contexts/UserContext';
 
 
-const HomePage = (props) => {
+const HomePage = () => {
+
+  const userContext = useContext(UserContext)
 
   return (
     <div>
-      Home Page
+      <h1>Home Page</h1>
       {
-        props.user && 
+        userContext.user 
+        && 
         <div>
-          <h1>Hi {props.user.username}</h1>
+          <h2>Hi! {userContext.user.first_name} '{userContext.user.username}' {userContext.user.last_name}</h2>
         </div>
-      }
-      {
-        !props.isLoggedIn
-        ?
-        <div>
-          <div>
-            <Link to='/login'>Login</Link>
-          </div>
-          <div>
-            <Link to='/signup'>Signup</Link>
-          </div>
-        </div>
-        :
-        <button onClick={props.handleLogout}>Logout</button>
       }
     </div>
   )

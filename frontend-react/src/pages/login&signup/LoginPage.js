@@ -1,36 +1,26 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useContext } from 'react'
+import { Redirect } from 'react-router'
+import isLoggedInContext from '../../contexts/isLoggedInContext';
 
 const LoginPage = (props) => {
 
-  console.log(props)
+  const { handleLogin } = props
+  const loggedInContext = useContext(isLoggedInContext)
 
-  if (props.isLoggedIn){
-    return (
-      <div>
-        <button onClick={props.handleLogout}>Logout</button>
-        <Link to='/'>Home</Link>
-      </div>
-    )
+  if (loggedInContext.isLoggedIn){
+    return <Redirect to = {`/`} />
   }
 
   return (
     <div>
-      <div>
-        <Link to='/'>Home</Link>
-      </div>
-      <div>
-        <Link to='/signup'>Signup</Link>
-      </div>
       <h1>Login Page</h1>
-      <form onSubmit={props.handleLogin}>
+      <form onSubmit={handleLogin}>
         <label>UserName:</label>
         <input type='text' placeholder='username' name='username' required></input>
         <label>Password:</label>
         <input type='password' placeholder='password' name='password' required></input>
         <button type='submit'>Submit</button>
       </form>
-
     </div>
   )
 }

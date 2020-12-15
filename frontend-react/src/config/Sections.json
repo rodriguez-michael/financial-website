@@ -1,0 +1,22 @@
+[
+  {
+    "label": "Net Worth",
+    "value": "networth"
+  },
+  {
+    "label": "News",
+    "value": "news"
+  },
+  {
+    "label": "News Favorties",
+    "value": "news/favorites"
+  },
+  {
+    "label": "Stocks",
+    "value": "stocks"
+  },
+  {
+    "label": "Stock Favorites",
+    "value": "stocks/favorites"
+  }
+]

@@ -7,6 +7,7 @@ from rest_framework.views import APIView
 from .serializers import UserSerializer, UserSerializerWithToken, NewsListSerializer, NewsArticleSerializer
 from rest_framework import viewsets
 from . import models
+from django_filters.rest_framework import DjangoFilterBackend
 
 
 # ----- User -----
@@ -45,6 +46,17 @@ class NewsListViewSet(viewsets.ModelViewSet):
 
 # ----- NewsArticle -----
 
+# class ProductFilter(django_filters.FilterSet):
+#     class Meta:
+#         model = Product
+#         fields = ['category', 'in_stock', 'manufacturer__name']
+
 class NewsArticleViewSet(viewsets.ModelViewSet):
     queryset = models.NewsArticle.objects.all()
     serializer_class = NewsArticleSerializer
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = ('newslist',)
+
+
+# class NewsListFilterSet(django_filters.FilterSet):
+#     list = django_filters.

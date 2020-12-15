@@ -1,5 +1,5 @@
 import React, { useState} from 'react'
-import UserAPI from '../api/UserAPI';
+import UserAPI from '../../api/UserAPI';
 import { Redirect } from 'react-router-dom'
 
 const SignupPage = () => {
