@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Redirect, Route } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 // api
 import UserAPI from './api/UserAPI';
 // pages
@@ -11,6 +11,9 @@ import NetWorthPage from './pages/networth/NetWorthPage';
 import NewsPage from './pages/news/NewsPage';
 import NewsFavoritesPage from './pages/news/NewsFavoritesPage';
 import FavoriteNewsGroupDetailPage from './pages/news/FavoriteNewsGroupDetailPage'
+import AddFavoriteGroupPage from './pages/news/AddFavoriteGroupPage'
+import EditFavoriteGroupPage from './pages/news/EditFavoriteGroupPage'
+import DeleteFavoriteGroupPage from './pages/news/DeleteFavoriteGroupPage'
 import StocksPage from './pages/stocks/StocksPage';
 import StockFavoritesPage from './pages/stocks/StockFavoritesPage';
 // components
@@ -24,7 +27,6 @@ const App = () => {
 
   const [user, setUser] = useState(null)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-
 
   // calls method on page load to look for token 
   useEffect(() => {
@@ -43,7 +45,11 @@ const App = () => {
       if(data.username) {
         setIsLoggedIn(true)
         setUser(data)
+        localStorage.setItem('user', data.id)
       }
+      // if(user){
+      //   localStorage.setItem('user', user.id)
+      // }
     }
   }
 
@@ -73,6 +79,7 @@ const App = () => {
   // gets passed to AppNav for navbar use
   const handleLogout = async (event) => {
     localStorage.setItem('auth-user', null)
+    localStorage.setItem('user', null)
     setIsLoggedIn(false)
     setUser(null)
     return (
@@ -94,17 +101,20 @@ const App = () => {
         <isLoggedInContext.Provider value={{ isLoggedIn: isLoggedIn, setIsLoggedIn: handleLogin }}>
           <UserContext.Provider value={{ user: user, setUser: handleLogin }}>
             <AppNav handleLogout={handleLogout}/>
-            <div>
+            <Switch>
               <Route exact path='/' component={HomePage}/>
               <Route exact path='/login' render={renderLoginPage}/>
               <Route exact path='/signup' component={SignupPage}/>
               <Route exact path='/networth' component={NetWorthPage}/>
               <Route exact path='/news' component={NewsPage}/>
               <Route exact path='/news/favorites' component={NewsFavoritesPage}/>
+              <Route exact path='/news/favorites/new' component={AddFavoriteGroupPage}/>
               <Route exact path='/news/favorites/:listID' component={FavoriteNewsGroupDetailPage}/>
+              <Route exact path='/news/favorites/:listID/edit' component={EditFavoriteGroupPage}/>
+              <Route exact path='/news/favorites/:listID/delete' component={DeleteFavoriteGroupPage}/>
               <Route exact path='/stocks' component={StocksPage}/>
               <Route exact path='/stocks/favorites' component={StockFavoritesPage}/>
-            </div>
+            </Switch>
           </UserContext.Provider>
         </isLoggedInContext.Provider>
       </BrowserRouter>

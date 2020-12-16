@@ -8,13 +8,12 @@ const FavoriteArticlesList = (props) => {
   let { articles } = props
   const userContext = useContext(UserContext)
 
-  console.log('fav article list', articles.articles[0].title)
-
   if(articles && userContext.user){
     articles = articles.articles.map((article, index) => (
       <ListGroupItem key={index}>
         <FavoriteArticleTeaser
           key={article.id}
+          articleID={article.id}
           title={article.title}
           author={article.author}
           description={article.description}

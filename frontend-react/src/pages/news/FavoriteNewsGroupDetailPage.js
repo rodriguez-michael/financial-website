@@ -1,16 +1,11 @@
-import React, { useState, useEffect, useContext} from 'react'
-import UserContext from '../../contexts/UserContext';
+import React, { useState, useEffect} from 'react'
+import { Link } from 'react-router-dom'
 import NewsAPI from '../../api/NewsAPI.js'
 import FavoriteArticlesList from '../../components/news/FavoriteArticlesList.js'
 
 const FavoriteNewsGroupDetailPage = (props) => {
 
-  const userContext = useContext(UserContext)
   const [articles, setArticles] = useState(null)
-
-  console.log('from group detail', props.match.params.listID)
-
-  console.log(userContext)
 
   // Get favorited articles and set them as state
   useEffect(() => {
@@ -29,11 +24,15 @@ const FavoriteNewsGroupDetailPage = (props) => {
 
   return (
     <div>
-      <h1>Actual Articles go here</h1>
       {
       articles 
-      && 
-      <FavoriteArticlesList articles={ articles }/>
+      &&
+      <div>
+        <Link to={`/news/favorites/${props.match.params.listID}/edit`}>Edit List</Link>
+        <span> | </span>
+        <Link to={`/news/favorites/${props.match.params.listID}/delete`}>Delete List</Link>  
+        <FavoriteArticlesList articles={ articles } />
+      </div>
       }
     </div>
   )

@@ -43,6 +43,8 @@ class UserList(APIView):
 class NewsListViewSet(viewsets.ModelViewSet):
     queryset = models.NewsList.objects.all()
     serializer_class = NewsListSerializer
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = ('user',)
 
 # ----- NewsArticle -----
 
@@ -54,8 +56,8 @@ class NewsListViewSet(viewsets.ModelViewSet):
 class NewsArticleViewSet(viewsets.ModelViewSet):
     queryset = models.NewsArticle.objects.all()
     serializer_class = NewsArticleSerializer
-    filter_backends = (DjangoFilterBackend,)
-    filter_fields = ('newslist',)
+    # filter_backends = (DjangoFilterBackend,)
+    # filter_fields = ('newslist',)
 
 
 # class NewsListFilterSet(django_filters.FilterSet):

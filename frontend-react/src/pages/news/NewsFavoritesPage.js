@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
+import { Link } from 'react-router-dom'
 import { Alert } from 'react-bootstrap';
 import UserContext from '../../contexts/UserContext';
 import NewsAPI from '../../api/NewsAPI.js'
@@ -9,30 +10,53 @@ const NewsFavoritesPage = () => {
   const userContext = useContext(UserContext)
   const [articles, setArticles] = useState(null)
 
-  console.log(articles)
-  console.log([articles])
+  
 
   // Get favorited articles and set them as state
   useEffect(() => {
+    
+    
+
     const getData = async () => {
+
+      if(localStorage.getItem('user') !== 'null'){
       try{
-        const response = await NewsAPI.fetchFavoriteLists(localStorage.getItem('auth-user'))
+        
+        const response = await NewsAPI.fetchFavoriteLists(localStorage.getItem('auth-user'), Number(localStorage.getItem('user')))
         setArticles(response)
       }
       catch(error){
         console.error(error)
       }
+    }else{
+      setTimeout(() => {
+          refreshPage()
+      },50)
+      
+    }
     }
       getData()
   },[]);
+
+  const refreshPage = () => {
+    window.location.reload();
+  }
+  
+  
 
   return (
     <div>
       <h1>News Favorites Page</h1>
       {
-        userContext.user 
+        userContext
         ?
-        <FavoriteNewsGroupList articles={articles} /> 
+        <div>
+          <div>
+           <Link to={'/news/favorites/new'}>Create New List</Link> 
+          </div>
+          
+          <FavoriteNewsGroupList articles={articles} />
+        </div> 
         :
         <Alert variant={'danger'}>Must be logged in to have favorites!</Alert>
       }
