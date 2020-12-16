@@ -2,12 +2,14 @@ import React, { useState, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { Alert } from 'react-bootstrap';
 import UserContext from '../../contexts/UserContext';
+import isLoggedInContext from '../../contexts/isLoggedInContext';
 import NewsAPI from '../../api/NewsAPI.js'
 import FavoriteNewsGroupList from '../../components/news/FavoriteNewsGroupList.js'
 
 const NewsFavoritesPage = () => {
 
   const userContext = useContext(UserContext)
+  const LoggedInContext = useContext(isLoggedInContext)
   const [articles, setArticles] = useState(null)
 
   
@@ -29,14 +31,15 @@ const NewsFavoritesPage = () => {
         console.error(error)
       }
     }else{
+      if(userContext.user){
       setTimeout(() => {
           refreshPage()
-      },50)
+      },50)}
       
     }
     }
       getData()
-  },[]);
+  },[userContext, LoggedInContext]);
 
   const refreshPage = () => {
     window.location.reload();
@@ -48,7 +51,7 @@ const NewsFavoritesPage = () => {
     <div>
       <h1>News Favorites Page</h1>
       {
-        userContext
+        userContext.user 
         ?
         <div>
           <div>
@@ -58,7 +61,10 @@ const NewsFavoritesPage = () => {
           <FavoriteNewsGroupList articles={articles} />
         </div> 
         :
-        <Alert variant={'danger'}>Must be logged in to have favorites!</Alert>
+        <div>
+          <Alert variant={'danger'}>Must be logged in to have favorites!</Alert>
+          <Link to="/login">Login Now!</Link>
+        </div>
       }
     </div>
   )
