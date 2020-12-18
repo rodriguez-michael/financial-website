@@ -9,6 +9,7 @@ const NetWorthPage = () => {
 
   let [plaidLinkToken, setPlaidLinkToken] = useState(null)
   let [accountInfo, setAccountInfo] = useState(null)
+  let [netWorth, setNetWorth] = useState(null)
   let [transactions, setTransactions] = useState(null)
   const userContext = useContext(UserContext)
 
@@ -21,6 +22,7 @@ const NetWorthPage = () => {
 
 
   useEffect(() => {
+    console.log('in effect')
     const createLinkToken = async () => {
       let response = await PlaidAPI.getLinkToken()
       let data = await response.json()
@@ -51,7 +53,31 @@ const NetWorthPage = () => {
   }
 
 
+
   if(accountInfo){
+
+    let positives = 0
+
+    for(let i = 0; i < accountInfo.length; i++){
+      if(accountInfo[i].type.includes('loan') || accountInfo[i].type.includes('credit')){
+      positives -= accountInfo[i].balances.current
+      // positives.push(accountInfo[i].balances.current)
+    }
+    else{
+      positives += accountInfo[i].balances.current
+    }
+    console.log('positives', positives)
+    // setNetWorth(positives)
+  }
+
+    if(!netWorth){
+      setNetWorth(positives)
+    }
+  
+
+    // let netWorth = accountInfo.reduce((acc, curr) => acc + curr.balances.current, 0 )
+    // console.log('networth', netWorth)
+
     accountInfo = accountInfo.map((account, index) => (
       // return (
       <p key={index}>
@@ -61,7 +87,12 @@ const NetWorthPage = () => {
     ))
   }
 
+
   if(transactions){
+
+    let transactionTotal = transactions.reduce((acc, curr) => acc + curr.amount, 0 )
+    console.log('transactions', transactionTotal)
+
     transactions = transactions.map((transact, index) => (
       // return (
       <p key={index}>
@@ -98,14 +129,22 @@ const NetWorthPage = () => {
           <div>
             {accountInfo 
             && 
-            <h6>{accountInfo}</h6>
+            <div>
+              <h1 style={{textDecoration: 'underline'}}>NetWorth</h1>
+              <h1 style={ {netWorth} >= 0 ? { color:'green'} : {color : 'red'} }>${netWorth}</h1>
+              <h6>{accountInfo}</h6>
+            </div>
             }
           </div>
 
           <div>
             {transactions 
             &&
-            <h6>{transactions}</h6>}
+            <div>
+              <h1 style={{textDecoration: 'underline'}}>Transactions in Last 30 Days</h1>
+              <h6>{transactions}</h6>
+              </div>
+            }
           </div>
 
         </div>
