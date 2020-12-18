@@ -51,7 +51,7 @@ const NewsFavoritesPage = () => {
     <div>
       <h1>News Favorites Page</h1>
       {
-        userContext.user 
+        userContext.user
         ?
         <div>
           <div>
@@ -62,7 +62,7 @@ const NewsFavoritesPage = () => {
         </div> 
         :
         <div>
-          <Alert variant={'danger'}>Must be logged in to have favorites!</Alert>
+          <Alert variant={'danger'}>Must be logged in to add news articles to your favorites!</Alert>
           <Link to="/login">Login Now!</Link>
         </div>
       }

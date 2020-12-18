@@ -22,3 +22,9 @@ class NewsArticle(models.Model):
 
     def __str__(self):
         return f"{self.title}"
+
+
+class PlaidAuth(models.Model):
+    access_token = models.CharField(max_length=100)
+    item_id = models.CharField(max_length=100)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='plaid')

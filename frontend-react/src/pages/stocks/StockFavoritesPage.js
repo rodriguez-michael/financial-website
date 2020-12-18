@@ -16,7 +16,7 @@ const StockFavoritesPage = () => {
         <Alert variant={'success'}>Add favorites from Stocks and they will appear here!</Alert>
         :
         <div>
-          <Alert variant={'danger'}>Must be logged in to have favorites!</Alert>
+          <Alert variant={'danger'}>Must be logged in to add stocks to your favorites!</Alert>
           <Link to="/login">Login Now!</Link>
         </div>
       }

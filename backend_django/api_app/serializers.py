@@ -3,7 +3,6 @@ from rest_framework_jwt.settings import api_settings
 from django.contrib.auth.models import User
 from .models import NewsList, NewsArticle
 
-
 # ----- NewsArticle -----
 
 
@@ -36,6 +35,7 @@ class UserSerializer(serializers.ModelSerializer):
     id = serializers.ReadOnlyField()
     newslists = NewsListSerializer(source='newslist', many=True, read_only=True)
 
+
     class Meta:
         model = User
         fields = ['id', 'first_name', 'last_name', 'username', 'email', 'newslists']
@@ -51,7 +51,9 @@ class UserSerializerWithToken(serializers.ModelSerializer):
         jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
 
         payload = jwt_payload_handler(obj)
+        print('payload', payload)
         token = jwt_encode_handler(payload)
+        print('token', token)
         return token
 
     def create(self, validated_data):

@@ -1,16 +1,22 @@
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.contrib.auth.models import User
 from rest_framework import permissions, status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializers import UserSerializer, UserSerializerWithToken, NewsListSerializer, NewsArticleSerializer
 from rest_framework import viewsets
 from . import models
 from django_filters.rest_framework import DjangoFilterBackend
+from plaid import Client
+from .utils import plaidclient, plaidLinkTokenDict
+import json
+from django.views.decorators.csrf import csrf_exempt
+import datetime
 
 
 # ----- User -----
+
 
 @api_view(['GET'])
 def current_user(request):
@@ -40,6 +46,7 @@ class UserList(APIView):
 
 # ----- NewsList -----
 
+
 class NewsListViewSet(viewsets.ModelViewSet):
     queryset = models.NewsList.objects.all()
     serializer_class = NewsListSerializer
@@ -48,17 +55,61 @@ class NewsListViewSet(viewsets.ModelViewSet):
 
 # ----- NewsArticle -----
 
-# class ProductFilter(django_filters.FilterSet):
-#     class Meta:
-#         model = Product
-#         fields = ['category', 'in_stock', 'manufacturer__name']
 
 class NewsArticleViewSet(viewsets.ModelViewSet):
     queryset = models.NewsArticle.objects.all()
     serializer_class = NewsArticleSerializer
-    # filter_backends = (DjangoFilterBackend,)
-    # filter_fields = ('newslist',)
 
 
-# class NewsListFilterSet(django_filters.FilterSet):
-#     list = django_filters.
+# ----- Plaid -----
+
+
+client = plaidclient()
+
+@api_view(['GET'])
+@permission_classes((permissions.IsAuthenticated,))
+def get_link_token(request):
+    data = plaidLinkTokenDict(str(request.user.username))
+    response = client.LinkToken.create(data)
+    link_token = response['link_token']
+    print(models.PlaidAuth.objects.filter(user=request.user).last().access_token)
+   
+    return JsonResponse(response)
+
+
+@api_view(['POST'])
+@permission_classes((permissions.IsAuthenticated,))
+def get_public_token_and_exchange_for_access_token(request):
+    data = json.load(request)
+    response = client.Item.public_token.exchange(data['public_token'])
+    access_token = response['access_token']
+    item_id = response['item_id']
+    print('accessToken: ', access_token)
+    print('item_id: ', item_id)
+    print('try to get user info: ', request.user)
+    models.PlaidAuth.objects.create(access_token=access_token, item_id=item_id, user=request.user)
+    return JsonResponse(data)
+
+
+
+@api_view(['POST'])
+@permission_classes((permissions.IsAuthenticated,))
+def get_account_info(request):
+    print('who is using account info -> ', request.user)
+    access_token = models.PlaidAuth.objects.filter(user=request.user).last().access_token
+    print(access_token)
+    response = client.Accounts.get(access_token)
+    accounts = response['accounts']
+    return JsonResponse(accounts, safe=False)
+
+
+@api_view(['POST'])
+@permission_classes((permissions.IsAuthenticated,))
+def get_transactions(request):
+    print('who is using transactions -> ', request.user)
+    access_token = models.PlaidAuth.objects.filter(user=request.user).last().access_token
+    start_date = "{:%Y-%m-%d}".format(datetime.datetime.now() + datetime.timedelta(-30))
+    end_date = "{:%Y-%m-%d}".format(datetime.datetime.now())
+    response = client.Transactions.get(access_token, start_date, end_date)
+    transactions = response['transactions']
+    return JsonResponse(transactions, safe=False)

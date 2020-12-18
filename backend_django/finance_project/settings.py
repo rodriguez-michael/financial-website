@@ -11,9 +11,14 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import os
+
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+# makes sure it looks at same directory level as manage.py for env file
 
 
 # Quick-start development settings - unsuitable for production
@@ -86,7 +91,8 @@ DATABASES = {
 
 
 JWT_AUTH = {
-    'JWT_RESPONSE_PAYLOAD_HANDLER': 'finance_project.utils.my_jwt_response_handler'
+    'JWT_RESPONSE_PAYLOAD_HANDLER': 'finance_project.utils.my_jwt_response_handler',
+    'JWT_VERIFY_EXPIRATION': False, # dont do this in production!!
 }
 
 
@@ -142,3 +148,12 @@ CORS_ORIGIN_WHITELIST = ('http://localhost:3000',)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# PLaid settings
+PLAID_CLIENT_ID = os.getenv('PLAID_CLIENT_ID')
+PLAID_SECRET = os.getenv('PLAID_SECRET')
+PLAID_ENV = os.getenv('PLAID_ENV', 'sandbox')
+PLAID_PRODUCTS = os.getenv('PLAID_PRODUCTS', 'transactions').split(',')
+PLAID_COUNTRY_CODES = os.getenv('PLAID_COUNTRY_CODES', 'US').split(',')
+PLAID_APP_NAME = os.getenv('PLAID_APP_NAME')
+PLAID_LANGUAGES =  os.getenv('PLAID_LANGUAGES', 'en')
