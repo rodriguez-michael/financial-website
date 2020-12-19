@@ -4,6 +4,10 @@ import PlaidAPI from '../../api/PlaidAPI';
 import UserContext from '../../contexts/UserContext';
 import { Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
+import Balances from '../../components/networth/Balances';
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import Transactions from '../../components/networth/Transactions';
 
 const NetWorthPage = () => {
 
@@ -66,8 +70,6 @@ const NetWorthPage = () => {
     else{
       positives += accountInfo[i].balances.current
     }
-    console.log('positives', positives)
-    // setNetWorth(positives)
   }
 
     if(!netWorth){
@@ -103,37 +105,54 @@ const NetWorthPage = () => {
   }
 
 
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      '& > *': {
+        margin: theme.spacing(1),
+      },
+    },
+  }));
+
+  const classes = useStyles();
+
+
   return (
     <div>
-      <h1>Net Worth Page</h1>
+      <h1 style={{fontSize: '60px'}}>Net Worth Page</h1>
       {
         plaidLinkToken && userContext.user
         ?
 
         <div>
 
-          <PlaidLink
+          <PlaidLink style={{backgroundColor:'green', color:'white',padding: '10px 15px', borderRadius: '12px', fontSize: '12px'}}
             token={plaidLinkToken}
             onSuccess={onSuccess}
             env='sandbox'
             // {...}
           >
-            Connect a bank account
+            CONNECT AN ACCOUNT
           </PlaidLink>
+          <hr></hr>
 
           <div>
-            <button onClick={getAccountInfo}>Accounts and Balances</button>
-            <button onClick={getTransactions}>Transactions</button>
+            <div className={classes.root}>
+              <Button variant="contained" color="primary" onClick={getAccountInfo}>Networth </Button>
+              <Button variant="contained" color="secondary" onClick={getTransactions}>Transactions</Button>
+            </div>
+          </div>
+
+          <div>
+            {!accountInfo && !transactions
+            && 
+            <Alert variant={'info'}>To view networth or transactions click on the buttons above and make sure you have already connected a financial institution!</Alert>
+            }
           </div>
           
           <div>
             {accountInfo 
             && 
-            <div>
-              <h1 style={{textDecoration: 'underline'}}>NetWorth</h1>
-              <h1 style={ {netWorth} >= 0 ? { color:'green'} : {color : 'red'} }>${netWorth}</h1>
-              <h6>{accountInfo}</h6>
-            </div>
+            <Balances accountInfo={accountInfo} netWorth={netWorth}/>
             }
           </div>
 
@@ -141,9 +160,8 @@ const NetWorthPage = () => {
             {transactions 
             &&
             <div>
-              <h1 style={{textDecoration: 'underline'}}>Transactions in Last 30 Days</h1>
-              <h6>{transactions}</h6>
-              </div>
+              <Transactions transactions={transactions}/>
+            </div>
             }
           </div>
 
