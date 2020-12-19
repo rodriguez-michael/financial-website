@@ -40,7 +40,7 @@ const HomePage = () => {
     //   }
     // </div>
     <div>
-      <h1>Financial Site</h1>
+      <h1>Financial Freedom</h1>
       <hr></hr>
     <div className={classes.root}>
       <Grid container justify = 'center' alignItems="center" spacing={3}>

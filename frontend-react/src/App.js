@@ -8,6 +8,7 @@ import HomePage from './pages/HomePage';
 import LoginPage from './pages/login&signup/LoginPage';
 import SignupPage from './pages/login&signup/SignupPage';
 import NetWorthPage from './pages/networth/NetWorthPage';
+import ResourcesPage from './pages/resources/ResourcesPage';
 import NewsPage from './pages/news/NewsPage';
 import NewsFavoritesPage from './pages/news/NewsFavoritesPage';
 import FavoriteNewsGroupDetailPage from './pages/news/FavoriteNewsGroupDetailPage'
@@ -106,6 +107,7 @@ const App = () => {
               <Route exact path='/login' render={renderLoginPage}/>
               <Route exact path='/signup' component={SignupPage}/>
               <Route exact path='/networth' component={NetWorthPage}/>
+              <Route exact path='/resources' component={ResourcesPage}/>
               <Route exact path='/news' component={NewsPage}/>
               <Route exact path='/news/favorites' component={NewsFavoritesPage}/>
               <Route exact path='/news/favorites/new' component={AddFavoriteGroupPage}/>

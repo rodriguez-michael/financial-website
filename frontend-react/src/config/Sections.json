@@ -4,6 +4,10 @@
     "value": "networth"
   },
   {
+    "label": "Resources",
+    "value": "resources"
+  },
+  {
     "label": "News",
     "value": "news"
   },

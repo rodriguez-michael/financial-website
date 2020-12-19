@@ -12,7 +12,7 @@ const AppNav = (props) => {
   return (
     <div>
       <Navbar color='light' light expand='md'>
-        <NavbarBrand tag={Link} to='/'>Finance Site</NavbarBrand>
+        <NavbarBrand tag={Link} to='/'>Financial Freedom</NavbarBrand>
         <Nav className='mr-auto'>
           {
             Sections.map((navItem, index) =>
