@@ -1,2 +1,2 @@
 # financial-website
-Take control of your finances with the help of this website.
+Take control of your finances earn your freedom with the help of this website.
