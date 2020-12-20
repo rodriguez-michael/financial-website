@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import Plot from 'react-plotly.js';
-// import Plot from 'plotly.js';
 
 const StockGraph = (props) => {
 
   const [xValues, setXValues] = useState(null)
   const [yValues, setYValues] = useState(null)
 
-  console.log('stock graph', props.stocks)
   // get arrays for stocks for graph
   useEffect(() => {
     if(props.stocks){
@@ -21,9 +19,6 @@ const StockGraph = (props) => {
       setYValues(stockPrices)
     }
   }, [props.stocks])
-
-
-
 
 
   return (
@@ -46,7 +41,6 @@ const StockGraph = (props) => {
           />
         </div>
       }
-      
     </div>
   )
 }

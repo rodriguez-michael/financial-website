@@ -18,31 +18,25 @@ const StockFavoritesPage = () => {
 
       if(localStorage.getItem('user') !== 'null'){
       try{
-        
         const response = await StocksAPI.fetchFavoriteStocks(localStorage.getItem('auth-user'), Number(localStorage.getItem('user')))
         setStockFavorites(response)
       }
       catch(error){
         console.error(error)
       }
-    }else{
-      if(userContext.user){
-      setTimeout(() => {
+      }else{
+        if(userContext.user){
+        setTimeout(() => {
           refreshPage()
       },50)}
       
     }
-
     const refreshPage = () => {
       window.location.reload();
     }
-
-    }
-      getData()
+  }
+    getData()
   },[userContext, LoggedInContext]);
-
-
-
 
   return (
     <div>

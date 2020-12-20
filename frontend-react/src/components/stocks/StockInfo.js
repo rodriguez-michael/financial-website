@@ -4,7 +4,6 @@ import StockPriceList from './StockPriceList'
 
 const StockInfo = (props) => {
 
-
   return (
     <div>
       <StockGraph stocks={props.stocks}/>

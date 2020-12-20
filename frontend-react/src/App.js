@@ -49,9 +49,6 @@ const App = () => {
         setUser(data)
         localStorage.setItem('user', data.id)
       }
-      // if(user){
-      //   localStorage.setItem('user', user.id)
-      // }
     }
   }
 
@@ -97,6 +94,7 @@ const App = () => {
     )
   }
 
+  
   return (
     <div className="App">
       <BrowserRouter>

@@ -7,10 +7,6 @@ const StockFavoriteGraph = (props) => {
   const [stocks, setStocks] = useState(null)
   const [xValues, setXValues] = useState(null)
   const [yValues, setYValues] = useState(null)
-  console.log('graph props', props)
-  console.log('stocks', stocks)
-  console.log('xvalues', xValues)
-  console.log('yvalues',yValues)
 
   useEffect(() => {
   const getData = async () =>{
@@ -22,11 +18,8 @@ const StockFavoriteGraph = (props) => {
       console.error(error)
     }
   }
-  
-  getData()
-
+    getData()
   }, [props.stockInfo.name])
-
 
 
   useEffect(() => {
@@ -40,33 +33,30 @@ const StockFavoriteGraph = (props) => {
       setXValues(stockDates)
       setYValues(stockPrices)
     }
-
-  
   }, [stocks])
 
 
   return (
     <div>
-    {
-      xValues && yValues
-      &&
-      <div>
-        <Plot
-          data={[
-            {
-              x: xValues,
-              y: yValues,
-              type: 'scatter',
-              mode: 'lines+markers',
-              marker: {color: 'red'},
-            }
-          ]}
-          layout={{width: 720, height: 440, title: 'A Fancy Plot'}}
-        />
-      </div>
-    }
-    
-  </div>
+      {
+        xValues && yValues
+        &&
+        <div>
+          <Plot
+            data={[
+              {
+                x: xValues,
+                y: yValues,
+                type: 'scatter',
+                mode: 'lines+markers',
+                marker: {color: 'red'},
+              }
+            ]}
+            layout={{width: 720, height: 440, title: 'A Fancy Plot'}}
+          />
+        </div>
+      }
+    </div>
   )
 }
 

@@ -24,8 +24,7 @@ const StockPriceList = (props) => {
     }
 
   }, [props.stocks])
-  // Get obj of stocks with Date: "price"
-
+  
 
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -38,12 +37,9 @@ const StockPriceList = (props) => {
     },
   }));
 
+
   const classes = useStyles();
 
-
-  function currencyFormat(num) {
-    return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
- }
 
   return (
     <div className={classes.root}>
@@ -58,7 +54,6 @@ const StockPriceList = (props) => {
                 <TableHead>
                   <TableRow>
                     <TableCell>Date</TableCell>
-                    {/* <TableCell align="left">Date</TableCell> */}
                     <TableCell align="left">Closing Price</TableCell>
                   </TableRow>
                 </TableHead>
@@ -68,7 +63,6 @@ const StockPriceList = (props) => {
                       <TableCell component="th" scope="row">
                         {stock[0]}
                       </TableCell>
-                      {/* <TableCell align="left">{transaction.props.children[2]}</TableCell> */}
                       <TableCell align="left">
                         ${stock[1]}
                       </TableCell>
