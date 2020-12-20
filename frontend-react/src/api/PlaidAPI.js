@@ -33,6 +33,7 @@ const getTransactions = async () => {
     },
     // body: JSON.stringify({'public_token': plaid_token})
   })
+  console.log('api response :', response)
   return response
 }
 

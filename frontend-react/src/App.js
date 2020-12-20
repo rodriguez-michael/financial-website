@@ -107,7 +107,7 @@ const App = () => {
               <Route exact path='/' component={HomePage}/>
               <Route exact path='/login' render={renderLoginPage}/>
               <Route exact path='/signup' component={SignupPage}/>
-              <Route exact path='/networth' component={NetWorthPage}/>
+              <Route exact path='/banking' component={NetWorthPage}/>
               <Route exact path='/resources' component={ResourcesPage}/>
               <Route exact path='/news' component={NewsPage}/>
               <Route exact path='/news/favorites' component={NewsFavoritesPage}/>

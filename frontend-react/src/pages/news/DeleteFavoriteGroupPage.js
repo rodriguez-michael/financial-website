@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
 import NewsAPI from '../../api/NewsAPI.js'
 import { Redirect } from 'react-router'
+import { Button } from 'reactstrap';
+
 const DeleteFavoriteGroupPage = (props) => {
 
   const [redirect, SetRedirect] = useState(false)
@@ -24,10 +26,10 @@ const DeleteFavoriteGroupPage = (props) => {
 
   return (
     <div>
-      <h1>Delete Category</h1>
+      <h1>Delete List</h1>
       <hr></hr>
-      <h1>Are you sure you want to delete this category?</h1>
-      <button onClick={handleClick}>Yes</button>
+      <h1>Are you sure you want to delete this list?</h1>
+      <Button onClick={handleClick} color="danger" size="lg">Yes, Delete List</Button>
     </div>
   )
 }

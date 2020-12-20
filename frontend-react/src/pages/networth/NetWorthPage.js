@@ -17,21 +17,23 @@ const NetWorthPage = () => {
   let [transactions, setTransactions] = useState(null)
   const userContext = useContext(UserContext)
 
-  console.log('account state: ', accountInfo)
+  console.log('plaid token: ', plaidLinkToken)
+  console.log('account info: ', accountInfo)
+  console.log('transactions: ', transactions)
+  console.log('userContext: ', userContext)
 
-  const onSuccess = (token, metadata) => {
-    PlaidAPI.sendPublicToken(token)
-    console.log('publicToken: ', token)
-  };
+ 
 
 
   useEffect(() => {
+    
     console.log('in effect')
+
     const createLinkToken = async () => {
       let response = await PlaidAPI.getLinkToken()
       let data = await response.json()
       let linkToken = await data['link_token']
-      console.log('linkToken: ', linkToken)
+      // console.log('linkToken: ', linkToken)
       setPlaidLinkToken(linkToken)
     }
 
@@ -39,6 +41,10 @@ const NetWorthPage = () => {
 
   }, [])
 
+  const onSuccess = (token, metadata) => {
+    PlaidAPI.sendPublicToken(token)
+    console.log('publicToken: ', token)
+  };
 
   const getTransactions = async () => {
     setAccountInfo(null)
@@ -118,14 +124,17 @@ const NetWorthPage = () => {
 
   return (
     <div>
-      <h1 style={{fontSize: '60px'}}>Net Worth Page</h1>
+      <h1>Banking</h1>
+      <hr></hr>
       {
-        plaidLinkToken && userContext.user
+        plaidLinkToken 
+        && 
+        userContext.user
         ?
 
         <div>
-
-          <PlaidLink style={{backgroundColor:'green', color:'white',padding: '10px 15px', borderRadius: '12px', fontSize: '12px'}}
+          <div>
+          <PlaidLink style={{backgroundColor:'green', color:'white',padding: '10px 15px', borderRadius: '12px', fontSize: '12px',marginTop: '12px'}}
             token={plaidLinkToken}
             onSuccess={onSuccess}
             env='sandbox'
@@ -133,19 +142,19 @@ const NetWorthPage = () => {
           >
             CONNECT AN ACCOUNT
           </PlaidLink>
-          <hr></hr>
+        </div>
 
           <div>
             <div className={classes.root}>
-              <Button variant="contained" color="primary" onClick={getAccountInfo}>Networth </Button>
-              <Button variant="contained" color="secondary" onClick={getTransactions}>Transactions</Button>
+              <Button variant="contained" color="primary" onClick={getAccountInfo} style={{marginTop: '25px'}}>Networth </Button>
+              <Button variant="contained" color="secondary" onClick={getTransactions} style={{marginTop: '25px'}}>Transactions</Button>
             </div>
           </div>
 
           <div>
             {!accountInfo && !transactions
             && 
-            <Alert variant={'info'}>To view networth or transactions click on the buttons above and make sure you have already connected a financial institution!</Alert>
+            <Alert variant={'info'} style={{marginTop: '40px'}}>To view networth or transactions click on the buttons above and make sure you have already connected to your financial institution!</Alert>
             }
           </div>
           
@@ -169,7 +178,7 @@ const NetWorthPage = () => {
         :
 
         <div>
-          <Alert variant={'danger'}>Must be logged in to view your net worth!</Alert>
+          <Alert variant={'danger'} style={{marginTop: '50px'}}>Must be logged in to view your banking information!</Alert>
           <Link to="/login">Login Now!</Link>
         </div>
 

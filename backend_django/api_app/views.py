@@ -83,7 +83,7 @@ def get_link_token(request):
     data = plaidLinkTokenDict(str(request.user.username))
     response = client.LinkToken.create(data)
     link_token = response['link_token']
-    print(models.PlaidAuth.objects.filter(user=request.user).last().access_token)
+    # print(models.PlaidAuth.objects.filter(user=request.user).last().access_token)
    
     return JsonResponse(response)
 

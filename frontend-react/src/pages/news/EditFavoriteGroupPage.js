@@ -31,7 +31,8 @@ const EditFavoriteGroupPage = (props) => {
 
   return (
       <div>
-          <h1>Edit Category</h1>
+          <h1>Edit List Name</h1>
+          <hr></hr>
           <form onSubmit={handleNewSubmit}>
             <label>Name: </label>
             <input type='text' name='name' placeholder='Favorites on Saving $' required/>

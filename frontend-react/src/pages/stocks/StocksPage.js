@@ -28,21 +28,22 @@ const StocksPage = () => {
   }
 
 
-  const BarStyling = {width:"40rem",background:"#F2F1F9", border:"none", padding:".6rem"};
+  const BarStyling = {width:"30rem", height: '45px',background:"#F2F1F9", border:"none", padding:".6rem"};
 
   return (
     <div>
-    
+      <h1>Stocks</h1>
+      <hr></hr>
         <div>
           <form onSubmit={handleSubmit}>
             <input 
                 style={BarStyling}
                 key="random1"
-                placeholder={"Search for stocks by typing in their Symbol -> 'AMZN' for Amazon"}
+                placeholder={"Search for stocks by typing in a stock ticker  --->  AMZN"}
                 name='search'
                 required
               />
-            <Button color="primary" size="lg" >Search</Button>
+            <Button color="primary" size="lg" style={{marginLeft: '15px'}}>Search</Button>
           </form>
           {stocks
           ?
@@ -63,7 +64,7 @@ const StocksPage = () => {
             </div>
           :
           <div>
-            <Alert variant={'warning'}>Must enter a valid stock market symbol to see graph and historical data!</Alert>
+            <Alert variant={'warning'} style={{marginTop: '50px'}}>Must enter a valid stock market symbol to see graph and historical data!</Alert>
           </div>
           }
         </div>

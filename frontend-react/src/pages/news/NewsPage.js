@@ -65,7 +65,7 @@ const NewsPage = () => {
 
   return (
     <div>
-      <h1>News Page</h1>
+      <h1>Top Business News</h1>
       {
       articles 
       &&
