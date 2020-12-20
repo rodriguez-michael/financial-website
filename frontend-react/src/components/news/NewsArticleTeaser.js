@@ -61,7 +61,7 @@ const NewsArticleTeaser = (props) => {
         <h4>{ title }</h4>
         {author && <h6 className='author'>Author: { author }</h6>}
         {description && <p className='description'>{ description }</p>}
-        <h6><a href={url}>{url}</a></h6>
+        <h6><a href={url} target="_blank" rel="noreferrer">Read Full Article</a></h6>
         <div>
           {
             localStorage.getItem('user') 

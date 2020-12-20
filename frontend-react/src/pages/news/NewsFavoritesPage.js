@@ -41,6 +41,8 @@ const NewsFavoritesPage = () => {
       getData()
   },[userContext, LoggedInContext]);
 
+  console.log('favorite articles', articles)
+
   const refreshPage = () => {
     window.location.reload();
   }

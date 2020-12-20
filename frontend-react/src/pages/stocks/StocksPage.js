@@ -5,12 +5,15 @@ import StocksAPI from '../../api/StocksAPI.js'
 import StockInfo from '../../components/stocks/StockInfo';
 import { Button } from 'reactstrap';
 import { Alert } from 'react-bootstrap';
+import StockFavoriteButton from '../../components/stocks/StockFavoriteButton';
 
 const StocksPage = () => {
 
   const [stocks, setStocks] = useState(null)
   const LoggedInContext = useContext(isLoggedInContext)
   const userContext = useContext(UserContext)
+
+  console.log('stocks from main stocks apge',stocks)
 
 
   const handleSubmit = async (event) => {
@@ -24,25 +27,6 @@ const StocksPage = () => {
     }
   }
 
-  const handleStockSave = async (event) => {
-    event.preventDefault()
-    try{
-      // save in database with name of symbol saved or with whole url
-      // have a foreign key tied to user
-      // can be deleted later by calling the delete function in api
-
-      // ** when they navigate to favorites page...it will already have called on useEffect the django api to get the stock names from the table...it will store those names in state
-
-      // ** with that state, i can loop through it and for each stock name make an api call to get its dictionary data and store it in an array?
-
-      // **can then make a graph for each stock name and store it in a compnent like article teaser
-
-      console.log(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${stocks['Meta Data']['2. Symbol']}&apikey=XHYEY7ACZCGWIRQR`)
-    }
-    catch(error){
-      console.error(error)
-    }
-  }
 
   const BarStyling = {width:"40rem",background:"#F2F1F9", border:"none", padding:".6rem"};
 
@@ -68,7 +52,9 @@ const StocksPage = () => {
                 ?
                 <div>
                   <h1>{stocks['Meta Data']['2. Symbol'].toUpperCase()}</h1>
-                  <Button color="success" size="sm" onClick={handleStockSave}>Add to Favorites</Button>
+    
+                  <StockFavoriteButton stockName={stocks['Meta Data']['2. Symbol'].toUpperCase()} />
+
                   <StockInfo stocks={stocks}/>
                 </div>
                 :

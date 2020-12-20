@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from rest_framework_jwt.settings import api_settings
 from django.contrib.auth.models import User
-from .models import NewsList, NewsArticle
+from .models import NewsList, NewsArticle, StockList
 
 # ----- NewsArticle -----
 
@@ -26,6 +26,16 @@ class NewsListSerializer(serializers.ModelSerializer):
     class Meta:
         model = NewsList
         fields = ['id', 'name', 'created_at', 'user', 'articles']
+
+# ----- StockList -----
+
+
+class StockListSerializer(serializers.ModelSerializer):
+    id = serializers.ReadOnlyField()
+    
+    class Meta:
+        model = StockList
+        fields = ['id', 'name', 'user']
 
 
 # ----- User -----

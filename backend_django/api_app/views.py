@@ -4,7 +4,7 @@ from rest_framework import permissions, status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .serializers import UserSerializer, UserSerializerWithToken, NewsListSerializer, NewsArticleSerializer
+from .serializers import UserSerializer, UserSerializerWithToken, NewsListSerializer, NewsArticleSerializer, StockListSerializer
 from rest_framework import viewsets
 from . import models
 from django_filters.rest_framework import DjangoFilterBackend
@@ -60,6 +60,17 @@ class NewsArticleViewSet(viewsets.ModelViewSet):
     queryset = models.NewsArticle.objects.all()
     serializer_class = NewsArticleSerializer
 
+
+# ----- StockList -----
+
+
+class StockListViewSet(viewsets.ModelViewSet):
+    queryset = models.StockList.objects.all()
+    serializer_class = StockListSerializer
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = ('user',)
+
+    # http://127.0.0.1:8000/api/stocklist/?user=1
 
 # ----- Plaid -----
 

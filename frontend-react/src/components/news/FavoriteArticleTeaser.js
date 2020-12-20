@@ -29,7 +29,7 @@ const FavoriteArticleTeaser = (props) => {
       <h4>{ title }</h4>
       {author && <p>Author: { author }</p>}
       {description && <p>{ description }</p>}
-      <h6><a href={url}>{url}</a></h6>
+      <h6><a href={url} target="_blank" rel="noreferrer">Read Full Article</a></h6>
       <Button id={articleID} onClick={handleArticle} color="danger" size="sm">Remove From Favorites</Button>
     </div>
   )

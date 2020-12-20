@@ -17,6 +17,7 @@ import EditFavoriteGroupPage from './pages/news/EditFavoriteGroupPage'
 import DeleteFavoriteGroupPage from './pages/news/DeleteFavoriteGroupPage'
 import StocksPage from './pages/stocks/StocksPage';
 import StockFavoritesPage from './pages/stocks/StockFavoritesPage';
+import FavoriteStockDetailPage from './pages/stocks/FavoriteStockDetailPage';
 // components
 import AppNav from './components/AppNav/AppNav';
 // contexts
@@ -116,6 +117,7 @@ const App = () => {
               <Route exact path='/news/favorites/:listID/delete' component={DeleteFavoriteGroupPage}/>
               <Route exact path='/stocks' component={StocksPage}/>
               <Route exact path='/stocks/favorites' component={StockFavoritesPage}/>
+              <Route exact path='/stocks/favorites/:stockID' component={FavoriteStockDetailPage}/>
             </Switch>
           </UserContext.Provider>
         </isLoggedInContext.Provider>
