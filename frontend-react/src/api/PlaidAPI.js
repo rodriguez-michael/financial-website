@@ -23,6 +23,7 @@ const getLinkToken = async () => {
   return response
 }
 
+
 const getTransactions = async () => {
   let django_token = localStorage.getItem('auth-user')
   let response = await fetch('http://localhost:8000/api/transactions/', {
@@ -31,9 +32,7 @@ const getTransactions = async () => {
       'Content-Type': 'application/json',
       'Authorization': `JWT ${django_token}`
     },
-    // body: JSON.stringify({'public_token': plaid_token})
   })
-  console.log('api response :', response)
   return response
 }
 

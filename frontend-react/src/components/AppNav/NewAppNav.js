@@ -1,10 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
-import green from "@material-ui/core/colors/green";
 import { Link } from 'react-router-dom'
 import UserContext from '../../contexts/UserContext';
 
@@ -23,20 +22,15 @@ const NewAppNav = (props) => {
     button: {
       flexGrow: 1,
     },
-    customColor: {
-      // or hex code, this is normal CSS background-color
-      backgroundColor: green[500]
-    },
     customHeight: {
       minHeight: 200
     },
     offset: theme.mixins.toolbar
   }));
 
+
   const classes = useStyles();
-  const [example, setExample] = useState("primary");
-  const isCustomColor = example === "customColor";
-  const isCustomHeight = example === "customHeight";
+
 
   function changeBackground(e) {
     e.target.style.color = 'white';
@@ -44,13 +38,7 @@ const NewAppNav = (props) => {
 
   return (
     <React.Fragment>
-      <AppBar
-        // color={isCustomColor || isCustomHeight ? "primary" : example}
-        // className={`${isCustomColor && classes.customColor} ${
-        //   isCustomHeight && classes.customHeight
-        // }`}
-        style={{ background: '#97D38D' }}
-      >
+      <AppBar style={{ background: '#97D38D' }} >
         <Toolbar>
           <Typography variant="h4" className={classes.title} component={Link} to={'/'} style={{cursor: 'pointer', color: 'white'}} onMouseOver={changeBackground}>
             Financial Freedom
@@ -88,7 +76,6 @@ const NewAppNav = (props) => {
                 Signup
               </IconButton>
             </div>
-
           }        
         </Toolbar>
       </AppBar>

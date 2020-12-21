@@ -8,13 +8,6 @@ const NewsList = (props) => {
 
   let listOfFavoriteTitles = []
 
-  // if(articles && favoriteArticles){
-  //   // let listOfFavoriteTitles = []
-  //   for(let i = 0; i < favoriteArticles.length; i++){
-  //     listOfFavoriteTitles.push(favoriteArticles[i].title)
-  //   }
-  // }
-
   if(articles && favoriteArticles){
     let articleArrays = []
     for(let i = 0; i < favoriteArticles.length; i++){

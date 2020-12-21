@@ -14,8 +14,6 @@ from pathlib import Path
 import os
 
 
-
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 # makes sure it looks at same directory level as manage.py for env file

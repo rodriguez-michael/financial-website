@@ -46,7 +46,7 @@ const SignupPage = () => {
       backgroundColor: 'green',
     },
     form: {
-      width: '100%', // Fix IE 11 issue.
+      width: '100%',
       marginTop: theme.spacing(3),
     },
     submit: {
@@ -54,7 +54,8 @@ const SignupPage = () => {
     },
   }));
   
-    const classes = useStyles();
+  
+  const classes = useStyles();
 
 
   if (redirect) {
@@ -64,7 +65,7 @@ const SignupPage = () => {
   }
 
   return (
-      <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
@@ -153,9 +154,6 @@ const SignupPage = () => {
         </form>
       </div>
     </Container>
-
-
-
   )
 }
 

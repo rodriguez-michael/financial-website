@@ -10,12 +10,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 
 
-
 const Transactions = (props) => {
-
-
-
-  console.log('transactions',props)
 
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -31,9 +26,10 @@ const Transactions = (props) => {
 
   const classes = useStyles();
 
+  
   function currencyFormat(num) {
     return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
- }
+  }
 
 
   return (

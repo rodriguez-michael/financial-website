@@ -1,7 +1,7 @@
 const fetchStockBySymbol = async(searchbar) => {
-  const apiKey = 'XHYEY7ACZCGWIRQR'
+  const API_KEY = process.env.REACT_APP_STOCKS_API;
   try{
-    const response = await fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${searchbar}&apikey=${apiKey}`)
+    const response = await fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${searchbar}&apikey=${API_KEY}`)
     let data = await response.json()
     return data
   }
@@ -63,8 +63,6 @@ const deleteStock = async (token, id) => {
 };
 
 
-
-
 const StocksAPI = { 
   fetchStockBySymbol,
   fetchFavoriteStocks,
@@ -73,4 +71,3 @@ const StocksAPI = {
 }
 
 export default StocksAPI
-

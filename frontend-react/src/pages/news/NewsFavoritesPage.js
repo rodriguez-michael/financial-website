@@ -12,48 +12,41 @@ const NewsFavoritesPage = () => {
   const LoggedInContext = useContext(isLoggedInContext)
   const [articles, setArticles] = useState(null)
 
-  
 
   // Get favorited articles and set them as state
   useEffect(() => {
     
-    
-
     const getData = async () => {
-
       if(localStorage.getItem('user') !== 'null'){
-      try{
-        
-        const response = await NewsAPI.fetchFavoriteLists(localStorage.getItem('auth-user'), Number(localStorage.getItem('user')))
-        setArticles(response)
+        try{
+          const response = await NewsAPI.fetchFavoriteLists(localStorage.getItem('auth-user'), Number(localStorage.getItem('user')))
+          setArticles(response)
+        }
+        catch(error){
+          console.error(error)
+        }
       }
-      catch(error){
-        console.error(error)
+      else{
+        if(userContext.user){
+          setTimeout(() => {
+            refreshPage()
+        },50)}
       }
-    }else{
-      if(userContext.user){
-      setTimeout(() => {
-          refreshPage()
-      },50)}
-      
-    }
     }
       getData()
   },[userContext, LoggedInContext]);
 
-  console.log('favorite articles', articles)
 
   const refreshPage = () => {
     window.location.reload();
   }
-  
   
 
   return (
     <div>
       <hr></hr>
       <h1>Favorite News Lists</h1>
-      {/* <hr></hr> */}
+      <hr></hr>
       {
         userContext.user
         ?
@@ -61,7 +54,6 @@ const NewsFavoritesPage = () => {
           <div>
            <Link to={'/news/favorites/new'}><h4 style={{marginTop: '20px', marginBottom: '20px'}}>Create New List</h4></Link> 
           </div>
-          
           <FavoriteNewsGroupList articles={articles} />
         </div> 
         :

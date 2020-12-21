@@ -1,6 +1,7 @@
 const fetchArticles = async() => {
+  const API_KEY = process.env.REACT_APP_NEWS_API;
   try{
-    const response = await fetch('https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=37a71010a8544a4aba5a3600f2a66c2b')
+    const response = await fetch(`https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=${API_KEY}`)
     let data = await response.json()
     return data
   }
@@ -8,8 +9,6 @@ const fetchArticles = async() => {
     console.error(error)
   }
 };
-
-
 
 
 const fetchFavoriteLists = async (token, userID) => {
@@ -132,6 +131,7 @@ const deleteFavoriteArticle = async (token, id) => {
   }
 };
 
+
 const addFavoritArticle = async (token, articleObject) => {
   try {
     const response = await fetch(`http://127.0.0.1:8000/api/newsarticle/`, {
@@ -150,9 +150,6 @@ const addFavoritArticle = async (token, articleObject) => {
 }
 
 
-
-
-
 const NewsAPI = { 
   fetchArticles,
   fetchFavoriteLists,
@@ -163,8 +160,6 @@ const NewsAPI = {
   deleteFavoriteCategory,
   deleteFavoriteArticle,
   addFavoritArticle
-
 }
 
 export default NewsAPI
-

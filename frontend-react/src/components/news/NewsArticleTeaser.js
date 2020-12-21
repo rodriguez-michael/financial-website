@@ -7,10 +7,7 @@ import Dropdown from 'react-bootstrap/Dropdown'
 const NewsArticleTeaser = (props) => {
 
   const { title, author, description, url } = props
-  // const [listNumber, setListNumber] = useState(null)
   const [favoritesList, setFavoritesList] = useState(null)
-
-
 
 
   // get list of favorite articles and set as state
@@ -18,16 +15,16 @@ const NewsArticleTeaser = (props) => {
   useEffect(() => {
     const getData = async () => {
       if(localStorage.getItem('user') !== 'null'){
-      try{
-        const response = await NewsAPI.fetchFavoriteLists(localStorage.getItem('auth-user'), Number(localStorage.getItem('user')))
-        setFavoritesList(response)
-      }
-      catch(error){
-        console.error(error)
+        try{
+          const response = await NewsAPI.fetchFavoriteLists(localStorage.getItem('auth-user'), Number(localStorage.getItem('user')))
+          setFavoritesList(response)
+        }
+        catch(error){
+          console.error(error)
+        }
       }
     }
-    }
-      getData()
+    getData()
   },[]);
 
 
@@ -36,11 +33,11 @@ const NewsArticleTeaser = (props) => {
     window.location.reload();
   }
 
+
   // delete article from favorite list
     let handleClick = (event) => {
     event.preventDefault()
       try{
-        console.log('in try', event.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector('h4').innerHTML,)
         const newArticleObject = {
           title: event.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector('h4').innerHTML,
           author: event.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector('h6').innerHTML,
@@ -75,7 +72,6 @@ const NewsArticleTeaser = (props) => {
                   !props.inDatabase
                   &&
                   <DropdownButton
-                    // alignCenter
                     title="Add to Favorites"
                     id="dropdown-basic"
                     variant='success'

@@ -79,7 +79,6 @@ const LoginPage = (props) => {
             id="password"
             autoComplete="current-password"
           />
-
           <Button
             style={{backgroundColor: 'green'}}
             type="submit"

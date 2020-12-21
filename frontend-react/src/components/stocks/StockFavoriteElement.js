@@ -7,7 +7,6 @@ const StockFavoriteElement = (props) => {
 
   
   let handleStockDelete = (event) => {
-    console.log(event.target.id)
     event.preventDefault()
     try{
       StocksAPI.deleteStock(localStorage.getItem('auth-user'), Number(event.target.id))

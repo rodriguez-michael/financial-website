@@ -53,6 +53,7 @@ class NewsListViewSet(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend,)
     filter_fields = ('user',)
 
+
 # ----- NewsArticle -----
 
 
@@ -72,6 +73,7 @@ class StockListViewSet(viewsets.ModelViewSet):
 
     # http://127.0.0.1:8000/api/stocklist/?user=1
 
+
 # ----- Plaid -----
 
 
@@ -83,8 +85,6 @@ def get_link_token(request):
     data = plaidLinkTokenDict(str(request.user.username))
     response = client.LinkToken.create(data)
     link_token = response['link_token']
-    # print(models.PlaidAuth.objects.filter(user=request.user).last().access_token)
-   
     return JsonResponse(response)
 
 
@@ -95,9 +95,6 @@ def get_public_token_and_exchange_for_access_token(request):
     response = client.Item.public_token.exchange(data['public_token'])
     access_token = response['access_token']
     item_id = response['item_id']
-    print('accessToken: ', access_token)
-    print('item_id: ', item_id)
-    print('try to get user info: ', request.user)
     models.PlaidAuth.objects.create(access_token=access_token, item_id=item_id, user=request.user)
     return JsonResponse(data)
 
@@ -106,9 +103,7 @@ def get_public_token_and_exchange_for_access_token(request):
 @api_view(['POST'])
 @permission_classes((permissions.IsAuthenticated,))
 def get_account_info(request):
-    print('who is using account info -> ', request.user)
     access_token = models.PlaidAuth.objects.filter(user=request.user).last().access_token
-    print(access_token)
     response = client.Accounts.get(access_token)
     accounts = response['accounts']
     return JsonResponse(accounts, safe=False)
@@ -117,7 +112,6 @@ def get_account_info(request):
 @api_view(['POST'])
 @permission_classes((permissions.IsAuthenticated,))
 def get_transactions(request):
-    print('who is using transactions -> ', request.user)
     access_token = models.PlaidAuth.objects.filter(user=request.user).last().access_token
     start_date = "{:%Y-%m-%d}".format(datetime.datetime.now() + datetime.timedelta(-30))
     end_date = "{:%Y-%m-%d}".format(datetime.datetime.now())

@@ -39,15 +39,6 @@ const AddFavoriteGroupPage = () => {
         <Link to={'/news/favorites'} style={{color: 'green', fontSize: '25px'}}>Back to all Favorites</Link>
         <hr></hr>
       </div>
-
-      {/* <div>
-        <form onSubmit={handleNewSubmit}>
-          <label>Name: </label>
-          <input type='text' name='name' placeholder='Favorites on Stocks' required/>
-          <button>Submit</button>
-        </form>
-      </div> */}
-
       <Form onSubmit={handleNewSubmit} style={{marginTop: '50px'}}>
         <FormGroup row style={{textAlign: 'right'}}>
           <Label for="exampleEmail" sm={4}><h5>List Name:</h5></Label>
@@ -61,7 +52,6 @@ const AddFavoriteGroupPage = () => {
           </Col>
         </FormGroup>
       </Form>
-      
     </div>
   )
 }

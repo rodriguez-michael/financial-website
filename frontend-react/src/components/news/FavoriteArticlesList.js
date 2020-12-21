@@ -32,7 +32,6 @@ const FavoriteArticlesList = (props) => {
             { articles }
         </ListGroup>
       }
-
     </div>
   )
 }

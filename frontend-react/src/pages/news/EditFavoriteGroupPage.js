@@ -31,18 +31,11 @@ const EditFavoriteGroupPage = (props) => {
   }
 
   return (
-      <div>
-          <hr></hr>
-          <h1>Edit List Name</h1>
-          <hr></hr>
-          {/* <form onSubmit={handleNewSubmit}>
-            <label>Name: </label>
-            <input type='text' name='name' placeholder='Favorites on Saving $' required/>
-            <button>Submit</button>
-          </form> */}
-
-
-          <Form onSubmit={handleNewSubmit} style={{marginTop: '50px'}}>
+    <div>
+      <hr></hr>
+      <h1>Edit List Name</h1>
+      <hr></hr>
+      <Form onSubmit={handleNewSubmit} style={{marginTop: '50px'}}>
         <FormGroup row style={{textAlign: 'right'}}>
           <Label for="exampleEmail" sm={4}><h5>New List Name:</h5></Label>
           <Col md={5}>
@@ -55,7 +48,7 @@ const EditFavoriteGroupPage = (props) => {
           </Col>
         </FormGroup>
       </Form>
-        </div>
+    </div>
   )
 }
 

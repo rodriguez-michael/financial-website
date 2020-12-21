@@ -1,6 +1,3 @@
-
-// ----- Login and User -----
-
 const login = async (userCredentials) => {
   let response = await fetch('http://localhost:8000/token-auth/', {
     method: 'POST',
@@ -12,6 +9,7 @@ const login = async (userCredentials) => {
   return response
 }
 
+
 const getLoggedInUser = async (token) => {
   let response = await fetch('http://localhost:8000/api/current_user/', {
     headers: {
@@ -21,6 +19,7 @@ const getLoggedInUser = async (token) => {
   })
   return response
 }
+
 
 const signupUser = async (userCredentials) => {
   let response = await fetch('http://localhost:8000/api/users/', {
@@ -32,6 +31,7 @@ const signupUser = async (userCredentials) => {
   })
   return response
 }
+
 
 const UserAPI = { 
   login, 

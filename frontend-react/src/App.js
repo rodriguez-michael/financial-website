@@ -1,9 +1,7 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
-// api
 import UserAPI from './api/UserAPI';
-// pages
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/login&signup/LoginPage';
 import SignupPage from './pages/login&signup/SignupPage';
@@ -18,10 +16,7 @@ import DeleteFavoriteGroupPage from './pages/news/DeleteFavoriteGroupPage'
 import StocksPage from './pages/stocks/StocksPage';
 import StockFavoritesPage from './pages/stocks/StockFavoritesPage';
 import FavoriteStockDetailPage from './pages/stocks/FavoriteStockDetailPage';
-// components
-// import AppNav from './components/AppNav/AppNav';
 import NewAppNav from './components/AppNav/NewAppNav';
-// contexts
 import UserContext from './contexts/UserContext.js';
 import isLoggedInContext from './contexts/isLoggedInContext.js';
 
@@ -95,13 +90,12 @@ const App = () => {
     )
   }
 
-  
+
   return (
     <div className="App">
       <BrowserRouter>
         <isLoggedInContext.Provider value={{ isLoggedIn: isLoggedIn, setIsLoggedIn: handleLogin }}>
           <UserContext.Provider value={{ user: user, setUser: handleLogin }}>
-            {/* <AppNav handleLogout={handleLogout}/> */}
             <NewAppNav handleLogout={handleLogout}/>
             <Switch>
               <Route exact path='/' component={HomePage}/>

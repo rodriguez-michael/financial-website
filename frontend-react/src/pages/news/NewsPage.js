@@ -3,11 +3,6 @@ import NewsAPI from '../../api/NewsAPI.js'
 import NewsList from '../../components/news/NewsList.js'
 import isLoggedInContext from '../../contexts/isLoggedInContext';
 import UserContext from '../../contexts/UserContext';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import Link from '@material-ui/core/Link';
-import CssBaseline from '@material-ui/core/CssBaseline';
 
 const NewsPage = () => {
 
@@ -15,10 +10,8 @@ const NewsPage = () => {
   const [favoriteArticles, setFavoriteArticles] = useState(null)
   const LoggedInContext = useContext(isLoggedInContext)
   const userContext = useContext(UserContext)
-  // const [user, setUser] = useState(localStorage.getItem('user'))
 
   
-
   // Get all articles from news api and set them as state
   useEffect(() => {
     const getData = async () => {
@@ -39,23 +32,19 @@ const NewsPage = () => {
       const getData = async () => {
         if (localStorage.getItem('user') !== 'null'){ 
         try{
-          // console.log(LoggedInContext)
           let response = await NewsAPI.fetchFavoriteLists(localStorage.getItem('auth-user'), Number(localStorage.getItem('user')))
           setFavoriteArticles(response)
         }
         catch(error){
           console.error(error)
         }
-        
       }
       else{
         if(userContext.user){
-        // console.log(LoggedInContext)
         setTimeout(() => {
           refreshPage()
-      },50)}
+        },50)}
       }
-        
     }
     getData()
     },[userContext, LoggedInContext]);
@@ -66,23 +55,17 @@ const NewsPage = () => {
     }
 
 
-
-
-
-    
-
-
   return (
 
     <div>
       <hr></hr>
-     <h1>Top Business News</h1>
+      <h1>Top Business News</h1>
       {
-      articles 
-      &&
-      <div> 
-      {localStorage.getItem('user') && <NewsList articles={ articles } favoriteArticles={favoriteArticles}/>}
-      </div>
+        articles 
+        &&
+        <div> 
+          {localStorage.getItem('user') && <NewsList articles={ articles } favoriteArticles={favoriteArticles}/>}
+        </div>
       }
     </div>
   )

@@ -10,43 +10,34 @@ const StockFavoriteButton = (props) => {
   let [saved, setSaved] = useState(null)
   const [favoriteStocks, setFavoriteStocks] = useState(null)
   
-
- useEffect(() => {
+  useEffect(() => {
    
+    const getData = async () => {
 
-  const getData = async () => {
+      if(localStorage.getItem('user') !== 'null'){
+        try{
+          
+          const response = await StocksAPI.fetchFavoriteStocks(localStorage.getItem('auth-user'), Number(localStorage.getItem('user')))
 
-    if(localStorage.getItem('user') !== 'null'){
-    try{
-      
-      const response = await StocksAPI.fetchFavoriteStocks(localStorage.getItem('auth-user'), Number(localStorage.getItem('user')))
-
-      let favoriteStockNames=[]
-      for(let i=0; i<response.length; i++){
-        favoriteStockNames.push(response[i].name)
+          let favoriteStockNames=[]
+          for(let i=0; i<response.length; i++){
+            favoriteStockNames.push(response[i].name)
+          }
+          setFavoriteStocks(favoriteStockNames)
+        }
+        catch(error){
+          console.error(error)
+        }
       }
-      setFavoriteStocks(favoriteStockNames)
+      else{
+        if(userContext.user){
+        setTimeout(() => {
+            refreshPage()
+        },50)}
+      }
     }
-    catch(error){
-      console.error(error)
-    }
-  }
-  else{
-    if(userContext.user){
-    setTimeout(() => {
-        refreshPage()
-    },50)}
-    
-
-
-  }
-}
-    getData()
-
- }, [userContext])
-
- console.log('checking for stocks', favoriteStocks)
-
+      getData()
+  }, [userContext])
 
 
   const handleStockSave = async (event) => {
@@ -58,7 +49,6 @@ const StockFavoriteButton = (props) => {
         user: userContext.user.id
       }
       StocksAPI.addStock(localStorage.getItem('auth-user'), stockObject)
-      // setSaved(true)
       let elem = document.getElementById(props.stockName);
       elem.parentNode.removeChild(elem);
     }
@@ -66,8 +56,6 @@ const StockFavoriteButton = (props) => {
       console.error(error)
     }
     setSaved(true)
-    // <Redirect to="/stocks/favorites" />
-
   }
 
   const refreshPage = () => {
@@ -92,4 +80,3 @@ const StockFavoriteButton = (props) => {
 }
 
 export default StockFavoriteButton
-

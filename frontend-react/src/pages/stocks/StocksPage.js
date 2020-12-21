@@ -9,6 +9,7 @@ const StocksPage = () => {
 
   const [stocks, setStocks] = useState(null)
 
+  // what happens search bar button is clicked
   const handleSubmit = async (event) => {
     event.preventDefault()
     try{
@@ -20,7 +21,8 @@ const StocksPage = () => {
     }
   }
 
-  const BarStyling = {width:"30rem", height: '45px',background:"#E1F3DE", border:"none", padding:".6rem"};
+  // search bar styling
+  const BarStyling = {width:"30rem", height: '45px',background:"#E1F3DE", border:"none", padding:".6rem", marginBottom: '30px', marginTop: '30px'};
 
   return (
     <div>

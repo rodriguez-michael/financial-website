@@ -17,96 +17,73 @@ const NetWorthPage = () => {
   let [transactions, setTransactions] = useState(null)
   const userContext = useContext(UserContext)
 
-  console.log('plaid token: ', plaidLinkToken)
-  console.log('account info: ', accountInfo)
-  console.log('transactions: ', transactions)
-  console.log('userContext: ', userContext)
-
- 
-
-
   useEffect(() => {
-    
-    console.log('in effect')
 
+    // create link token from plaid ans set as state
     const createLinkToken = async () => {
       let response = await PlaidAPI.getLinkToken()
       let data = await response.json()
       let linkToken = await data['link_token']
-      // console.log('linkToken: ', linkToken)
       setPlaidLinkToken(linkToken)
     }
 
     createLinkToken()
-
   }, [])
 
+  // If link token is recieved from PLAID send publc token to server
   const onSuccess = (token, metadata) => {
     PlaidAPI.sendPublicToken(token)
-    console.log('publicToken: ', token)
   };
 
+  // Handle transactions button click
   const getTransactions = async () => {
     setAccountInfo(null)
     let response = await PlaidAPI.getTransactions()
     let data = await response.json()
     setTransactions(data)
-    console.log(data)
   }
 
+  // Handle networht button click
   const getAccountInfo = async () => {
     setTransactions(null)
     let response = await PlaidAPI.getAccountInfo()
     let data = await response.json()
     setAccountInfo(data)
-    console.log(data)
   }
 
-
-
+  // Logic to show net worth
   if(accountInfo){
 
     let positives = 0
 
     for(let i = 0; i < accountInfo.length; i++){
       if(accountInfo[i].type.includes('loan') || accountInfo[i].type.includes('credit')){
-      positives -= accountInfo[i].balances.current
-      // positives.push(accountInfo[i].balances.current)
+        positives -= accountInfo[i].balances.current
+      }
+      else{
+        positives += accountInfo[i].balances.current
+      }
     }
-    else{
-      positives += accountInfo[i].balances.current
-    }
-  }
 
     if(!netWorth){
       setNetWorth(positives)
     }
-  
-
-    // let netWorth = accountInfo.reduce((acc, curr) => acc + curr.balances.current, 0 )
-    // console.log('networth', netWorth)
 
     accountInfo = accountInfo.map((account, index) => (
-      // return (
       <p key={index}>
         {account.name} ({account.subtype}) = ${account.balances.current}
        </p>
-      // )
     ))
   }
 
 
+  // logic to show transactions
   if(transactions){
 
-    let transactionTotal = transactions.reduce((acc, curr) => acc + curr.amount, 0 )
-    console.log('transactions', transactionTotal)
-
     transactions = transactions.map((transact, index) => (
-      // return (
       <p key={index}>
         {transact.name} ({transact.date}) = ${transact.amount}
        </p>
-      // )
     ))
   }
 
@@ -132,18 +109,17 @@ const NetWorthPage = () => {
         && 
         userContext.user
         ?
-
         <div>
           <div>
-          <PlaidLink style={{backgroundColor:'green', color:'white',padding: '10px 15px', borderRadius: '12px', fontSize: '12px',marginTop: '12px'}}
-            token={plaidLinkToken}
-            onSuccess={onSuccess}
-            env='sandbox'
-            // {...}
-          >
-            CONNECT AN ACCOUNT
-          </PlaidLink>
-        </div>
+            <PlaidLink style={{backgroundColor:'green', color:'white',padding: '10px 15px', borderRadius: '12px', fontSize: '12px',marginTop: '12px'}}
+              token={plaidLinkToken}
+              onSuccess={onSuccess}
+              env='sandbox'
+              // {...}
+            >
+              CONNECT AN ACCOUNT
+            </PlaidLink>
+          </div>
 
           <div>
             <div className={classes.root}>
@@ -158,7 +134,7 @@ const NetWorthPage = () => {
             <Alert variant={'info'} style={{marginTop: '40px'}}>To view networth or transactions click on the buttons above and make sure you have already connected to your financial institution!</Alert>
             }
           </div>
-          
+            
           <div>
             {accountInfo 
             && 
@@ -177,12 +153,11 @@ const NetWorthPage = () => {
 
         </div>
         :
-
+        
         <div>
           <Alert variant={'danger'} style={{marginTop: '50px'}}>Must be logged in to view your banking information!</Alert>
           <Link to="/login" style={{fontSize: '40px', color: 'green'}}>Login Now!</Link>
         </div>
-
       }
     </div>
   )

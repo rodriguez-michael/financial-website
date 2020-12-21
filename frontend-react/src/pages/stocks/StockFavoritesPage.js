@@ -46,14 +46,14 @@ const StockFavoritesPage = () => {
       {
         userContext.user 
         ?
-        <div>
-          <StockFavoriteList stockFavorites={stockFavorites}/>
-        </div>
+          <div>
+            <StockFavoriteList stockFavorites={stockFavorites}/>
+          </div>
         :
-        <div>
-          <Alert variant={'danger'} style={{marginTop: '50px'}}>Must be logged in to add stocks to your favorites!</Alert>
-          <Link to="/login" style={{fontSize: '40px', color: 'green'}}>Login Now!</Link>
-        </div>
+          <div>
+            <Alert variant={'danger'} style={{marginTop: '50px'}}>Must be logged in to add stocks to your favorites!</Alert>
+            <Link to="/login" style={{fontSize: '40px', color: 'green'}}>Login Now!</Link>
+          </div>
       }
     </div>
   )
