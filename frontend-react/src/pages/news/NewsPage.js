@@ -3,6 +3,11 @@ import NewsAPI from '../../api/NewsAPI.js'
 import NewsList from '../../components/news/NewsList.js'
 import isLoggedInContext from '../../contexts/isLoggedInContext';
 import UserContext from '../../contexts/UserContext';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import Link from '@material-ui/core/Link';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 const NewsPage = () => {
 
@@ -63,9 +68,15 @@ const NewsPage = () => {
 
 
 
+
+    
+
+
   return (
+
     <div>
-      <h1>Top Business News</h1>
+      <hr></hr>
+     <h1>Top Business News</h1>
       {
       articles 
       &&

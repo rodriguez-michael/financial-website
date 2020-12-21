@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import StocksAPI from '../../api/StocksAPI.js'
 import UserContext from '../../contexts/UserContext';
 import { Button } from 'reactstrap';
+import { Redirect } from "react-router-dom"
 
 const StockFavoriteButton = (props) => {
 
@@ -57,18 +58,24 @@ const StockFavoriteButton = (props) => {
         user: userContext.user.id
       }
       StocksAPI.addStock(localStorage.getItem('auth-user'), stockObject)
-      setSaved(true)
+      // setSaved(true)
       let elem = document.getElementById(props.stockName);
       elem.parentNode.removeChild(elem);
     }
     catch(error){
       console.error(error)
     }
-    // refreshPage()
+    setSaved(true)
+    // <Redirect to="/stocks/favorites" />
+
   }
 
   const refreshPage = () => {
     window.location.reload();
+  }
+
+  if(saved){
+    return <Redirect to="/stocks/favorites" />
   }
 
   return (

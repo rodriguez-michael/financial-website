@@ -51,14 +51,15 @@ const NewsFavoritesPage = () => {
 
   return (
     <div>
-      <h1>Favorite News Lists</h1>
       <hr></hr>
+      <h1>Favorite News Lists</h1>
+      {/* <hr></hr> */}
       {
         userContext.user
         ?
         <div>
           <div>
-           <Link to={'/news/favorites/new'}><h3 style={{marginTop: '20px', marginBottom: '20px'}}>Create New List</h3></Link> 
+           <Link to={'/news/favorites/new'}><h4 style={{marginTop: '20px', marginBottom: '20px'}}>Create New List</h4></Link> 
           </div>
           
           <FavoriteNewsGroupList articles={articles} />
@@ -66,7 +67,7 @@ const NewsFavoritesPage = () => {
         :
         <div>
           <Alert variant={'danger'} style={{marginTop: '50px'}}>Must be logged in to add news articles to your favorites!</Alert>
-          <Link to="/login">Login Now!</Link>
+          <Link to="/login" style={{fontSize: '40px', color: 'green'}}>Login Now!</Link>
         </div>
       }
     </div>

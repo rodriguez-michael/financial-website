@@ -19,7 +19,8 @@ import StocksPage from './pages/stocks/StocksPage';
 import StockFavoritesPage from './pages/stocks/StockFavoritesPage';
 import FavoriteStockDetailPage from './pages/stocks/FavoriteStockDetailPage';
 // components
-import AppNav from './components/AppNav/AppNav';
+// import AppNav from './components/AppNav/AppNav';
+import NewAppNav from './components/AppNav/NewAppNav';
 // contexts
 import UserContext from './contexts/UserContext.js';
 import isLoggedInContext from './contexts/isLoggedInContext.js';
@@ -100,7 +101,8 @@ const App = () => {
       <BrowserRouter>
         <isLoggedInContext.Provider value={{ isLoggedIn: isLoggedIn, setIsLoggedIn: handleLogin }}>
           <UserContext.Provider value={{ user: user, setUser: handleLogin }}>
-            <AppNav handleLogout={handleLogout}/>
+            {/* <AppNav handleLogout={handleLogout}/> */}
+            <NewAppNav handleLogout={handleLogout}/>
             <Switch>
               <Route exact path='/' component={HomePage}/>
               <Route exact path='/login' render={renderLoginPage}/>

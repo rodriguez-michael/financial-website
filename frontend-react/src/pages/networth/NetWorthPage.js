@@ -124,6 +124,7 @@ const NetWorthPage = () => {
 
   return (
     <div>
+      <hr></hr>
       <h1>Banking</h1>
       <hr></hr>
       {
@@ -179,7 +180,7 @@ const NetWorthPage = () => {
 
         <div>
           <Alert variant={'danger'} style={{marginTop: '50px'}}>Must be logged in to view your banking information!</Alert>
-          <Link to="/login">Login Now!</Link>
+          <Link to="/login" style={{fontSize: '40px', color: 'green'}}>Login Now!</Link>
         </div>
 
       }

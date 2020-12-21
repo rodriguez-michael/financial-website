@@ -26,6 +26,7 @@ const DeleteFavoriteGroupPage = (props) => {
 
   return (
     <div>
+      <hr></hr>
       <h1>Delete List</h1>
       <hr></hr>
       <h1>Are you sure you want to delete this list?</h1>

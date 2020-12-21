@@ -49,10 +49,10 @@ const StockFavoriteGraph = (props) => {
                 y: yValues,
                 type: 'scatter',
                 mode: 'lines+markers',
-                marker: {color: 'red'},
+                marker: {color: '#97D38D'},
               }
             ]}
-            layout={{width: 720, height: 440, title: 'A Fancy Plot'}}
+            layout={{width: 720, height: 440}}
           />
         </div>
       }

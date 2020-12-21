@@ -13,7 +13,7 @@ const FavoriteGroupsList = (props) => {
 
     articles = articles.map((article, index) => (
       <ListGroupItem key={index}>
-          <Link key={'Add'} to={`/news/favorites/${article.id}`}>{article.name}</Link>
+          <Link key={'Add'} to={`/news/favorites/${article.id}`} style={{color: 'green', fontSize: '35px'}}>{article.name}</Link>
       </ListGroupItem>
     ));
   }

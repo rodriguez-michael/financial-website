@@ -20,10 +20,11 @@ const StocksPage = () => {
     }
   }
 
-  const BarStyling = {width:"30rem", height: '45px',background:"#F2F1F9", border:"none", padding:".6rem"};
+  const BarStyling = {width:"30rem", height: '45px',background:"#E1F3DE", border:"none", padding:".6rem"};
 
   return (
     <div>
+      <hr></hr>
       <h1>Stocks</h1>
       <hr></hr>
       <div>
@@ -35,7 +36,7 @@ const StocksPage = () => {
             name='search'
             required
           />
-          <Button color="primary" size="lg" style={{marginLeft: '15px'}}>Search</Button>
+          <Button color="success" size="lg" style={{marginLeft: '15px'}}>Search</Button>
         </form>
         {
         stocks
