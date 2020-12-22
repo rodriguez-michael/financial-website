@@ -1,7 +1,4 @@
-# financial-website
-
-[![LinkedIn][linkedin-shield]][https://www.linkedin.com/in/rodriguez-michael/]
-
+# Financial Freedom Website
 
 
 <!-- PROJECT LOGO -->
@@ -27,16 +24,20 @@
 
 ### Built With
 
-* [React](https://reactjs.org/)
-* [Django](https://www.djangoproject.com/)
-* [PostgreSQL](https://www.postgresql.org/)
-* [Material UI](https://material-ui.com/)
+* [React](https://reactjs.org/) - Used for front end with Javacript
+* [Django](https://www.djangoproject.com/) - Used for back end with Python
+* [PostgreSQL](https://www.postgresql.org/) - Used for database and connected to Django
+* [Material UI](https://material-ui.com/) - Used for styling
 
 
 
 <!-- USAGE EXAMPLES -->
 ## Features
 
+Resources available to service members during financial hardship.
+![](images/resources.png)
+
+Look up a stock with its ticker and get a graph and table with the last 100 days of it's closing price.
 ![](images/stocks.png)
 
 
@@ -44,15 +45,10 @@
 <!-- CONTACT -->
 ## Contact
 
+LinkedIn - https://www.linkedin.com/in/rodriguez-michael/
+
 Email - contact@michaelrodriguez.dev
 
-Personal Site - michaelrodriguez.dev
+Personal Site - https://michaelrodriguez.dev/
 
 Project Link: [https://github.com/rodriguez-michael/financial-website](https://github.com/rodriguez-michael/financial-website)
-
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/github_username
