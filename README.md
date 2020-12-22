@@ -17,10 +17,9 @@
 
 
 ## About The Project
-<h3>Authenticated website for users to keep track of their net worth, account balances, transactions, stocks, business news, and resources available to them in order to reach financial freedom!</h3>
-<br />
+Authenticated website for users to keep track of their net worth, account balances, transactions, stocks, business news, and resources available to them in order to reach financial freedom!
+
 ![](images/homepage.png)
-<br />
 
 
 
@@ -33,28 +32,26 @@
 * [Plaid API](https://plaid.com/products/auth/overview/?utm_source=google&utm_medium=search&utm_campaign=Search_G_Brand_Exact&utm_content=plaidapi&utm_term=plaid%20api&utm_creative=481138286063&gclid=CjwKCAiArIH_BRB2EiwALfbH1BJCDkYsFsXWmd-_Yq5HgfAjoKAaB3qgz77hrehqSKKZXnLbrYxW4hoC9l8QAvD_BwE) - Used for connect to your financial institution
 * [Alpha Vantage API](https://www.alphavantage.co/) - Used for getting stock information
 * [News API](https://newsapi.org/) - Used for getting the latest business articles
-<br />
 
 
 
 ## Features
 
-<h3>Connect to your financial institution and get access to your net worth, account balances, and transactions in the last thirty days.</h3>
-<br />
+Connect to your financial institution and get access to your net worth, account balances, and transactions in the last thirty days.
+
 ![](images/networth.png)
-<br />
-<h3>Resources available to help service members during financial hardship.</h3>
-<br />
+
+Resources available to help service members during financial hardship.
+
 ![](images/resources.png)
-<br />
-<h3>Look up a stock with its ticker and get a graph and table with the last 100 days of it's closing price. Add it to your favorites to reference later.</h3>
-<br />
+
+Look up a stock with its ticker and get a graph and table with the last 100 days of it's closing price. Add it to your favorites to reference later.
+
 ![](images/stocks.png)
-<br />
-<h3>Access to the latest bussiness articles and the ability to add them to your customized favorites lists.</h3>
-<br />
+
+Access to the latest bussiness articles and the ability to add them to your customized favorites lists.
+
 ![](images/news.png)
-<br />
 
 
 
