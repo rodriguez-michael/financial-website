@@ -33,7 +33,6 @@ const FavoriteNewsGroupDetailPage = (props) => {
         <Link to={`/news/favorites/${props.match.params.listID}/edit`}><span style={{fontSize: '25px', color: 'green'}}>Edit List</span></Link>
         <span> <span style={{fontSize: '25px'}}> | </span> </span>
         <Link to={`/news/favorites/${props.match.params.listID}/delete`}><span style={{fontSize: '25px', color:'green'}}>Delete List</span></Link>
-        <hr></hr>  
         <FavoriteArticlesList articles={ articles } />
       </div>
       }

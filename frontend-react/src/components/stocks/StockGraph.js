@@ -37,7 +37,7 @@ const StockGraph = (props) => {
                 marker: {color: '#97D38D'},
               }
             ]}
-            layout={{width: 720, height: 440}}
+            layout={{width: 1000, height: 450, title: 'Closing Price for last 100 days'}}
           />
         </div>
       }

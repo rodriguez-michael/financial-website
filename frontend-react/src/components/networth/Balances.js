@@ -19,7 +19,8 @@ const Balances = (props) => {
     paper: {
       padding: theme.spacing(2),
       textAlign: 'center',
-      color: theme.palette.text.secondary,
+      color: '#484848',
+      backgroundColor: '#C7E9BA'
     },
   }));
 
@@ -36,8 +37,8 @@ const Balances = (props) => {
     <div className={classes.root}>
       <Grid container justify = 'center' alignItems="center" spacing={3}>
         <Grid item xs={8}>
-          <Paper className={classes.paper}>
-            <h1 style={{textDecoration: 'underline'}} >NetWorth</h1>
+          <Paper className={classes.paper} style={{background: 'white'}}>
+            <h1 style={{textDecoration: 'underline', background: 'white'}} >NetWorth</h1>
             <h3 style={ props.netWorth >= 0 ? { color:'green'} : {color : 'red'} }>{currencyFormat(props.netWorth)}</h3>
           </Paper>
         </Grid>
@@ -58,7 +59,7 @@ const Balances = (props) => {
                       <TableCell component="th" scope="row">
                         {account.props.children[0]}
                       </TableCell>
-                      <TableCell align="left">{account.props.children[2]}</TableCell>
+                      <TableCell align="left">{account.props.children[2].toUpperCase()}</TableCell>
                       <TableCell align="left">{currencyFormat(account.props.children[4])}</TableCell>
                     </TableRow>
                   ))}

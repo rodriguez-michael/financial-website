@@ -83,7 +83,7 @@ const Resources = () => {
   return (
     <React.Fragment>
       <hr></hr>
-      <h1>Resources</h1>
+      <h1>Service Member Resources</h1>
       <hr></hr>
       <CssBaseline />
       <main>

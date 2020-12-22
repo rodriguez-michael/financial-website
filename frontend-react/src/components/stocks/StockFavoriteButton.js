@@ -72,7 +72,7 @@ const StockFavoriteButton = (props) => {
         favoriteStocks
         &&
         <div>
-          {!favoriteStocks.includes(props.stockName) ? <Button id={props.stockName} onClick={handleStockSave} color="success" size="sm">Add to Favorites</Button> : <Button color="warning" size="sm" disabled>Already in Favorites</Button>}
+          {!favoriteStocks.includes(props.stockName) ? <Button id={props.stockName} onClick={handleStockSave} color="success" size="sm" style={{marginTop: '10px', marginBottom: '10px'}}>Add to Favorites</Button> : <Button color="warning" size="sm" disabled style={{marginTop: '10px', marginBottom: '10px'}}>Already in Favorites</Button>}
         </div>
       }
     </div>

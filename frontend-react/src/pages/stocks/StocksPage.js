@@ -22,7 +22,7 @@ const StocksPage = () => {
   }
 
   // search bar styling
-  const BarStyling = {width:"30rem", height: '45px',background:"#E1F3DE", border:"none", padding:".6rem", marginBottom: '30px', marginTop: '30px'};
+  const BarStyling = {width:"30rem", height: '50px', background:"#DCDCDC", border:"none", padding:".6rem", marginBottom: '30px', marginTop: '30px'};
 
   return (
     <div>
@@ -48,7 +48,7 @@ const StocksPage = () => {
               stocks['Meta Data'] 
               ?
               <div>
-                <h1>{stocks['Meta Data']['2. Symbol'].toUpperCase()}</h1>
+                <h1 style={{color:'#484848', textDecoration: 'underline'}}>{stocks['Meta Data']['2. Symbol'].toUpperCase()}</h1>
   
                 <StockFavoriteButton stockName={stocks['Meta Data']['2. Symbol'].toUpperCase()} />
 
@@ -60,7 +60,7 @@ const StocksPage = () => {
           </div>
         :
           <div>
-            <Alert variant={'warning'} style={{marginTop: '50px'}}>Must enter a valid stock market symbol to see graph and historical data!</Alert>
+            {/* <Alert variant={'warning'} style={{marginTop: '50px'}}>Must enter a valid stock market symbol to see graph and historical data!</Alert> */}
           </div>
         }
       </div>

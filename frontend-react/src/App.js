@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import UserAPI from './api/UserAPI';
 import HomePage from './pages/HomePage';
+import NotFoundPage from './pages/NotFoundPage.js'
 import LoginPage from './pages/login&signup/LoginPage';
 import SignupPage from './pages/login&signup/SignupPage';
 import NetWorthPage from './pages/networth/NetWorthPage';
@@ -112,6 +113,8 @@ const App = () => {
               <Route exact path='/stocks' component={StocksPage}/>
               <Route exact path='/stocks/favorites' component={StockFavoritesPage}/>
               <Route exact path='/stocks/favorites/:stockID' component={FavoriteStockDetailPage}/>
+              <Route exact path="/page-not-found" component={NotFoundPage} />
+              <Route render={() => <Redirect to={{pathname: "/page-not-found"}} />} />
             </Switch>
           </UserContext.Provider>
         </isLoggedInContext.Provider>

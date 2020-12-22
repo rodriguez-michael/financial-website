@@ -34,7 +34,7 @@ const NewsArticleTeaser = (props) => {
   }
 
 
-  // delete article from favorite list
+  // add article to favorite list
     let handleClick = (event) => {
     event.preventDefault()
       try{

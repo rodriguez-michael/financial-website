@@ -34,6 +34,7 @@ const StockPriceList = (props) => {
       padding: theme.spacing(2),
       textAlign: 'center',
       color: theme.palette.text.secondary,
+      backgroundColor: '#C7E9BA'
     },
   }));
 
@@ -43,6 +44,7 @@ const StockPriceList = (props) => {
 
   return (
     <div className={classes.root}>
+      <h3>Closing Prices for last 100 Days</h3>
       {
         stockPriceList
         &&

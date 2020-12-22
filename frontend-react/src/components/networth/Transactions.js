@@ -19,7 +19,8 @@ const Transactions = (props) => {
     paper: {
       padding: theme.spacing(2),
       textAlign: 'center',
-      color: theme.palette.text.secondary,
+      color: '#484848',
+      backgroundColor: '#C7E9BA'
     },
   }));
 
@@ -35,9 +36,9 @@ const Transactions = (props) => {
   return (
     <div className={classes.root}>
       <Grid container justify = 'center' alignItems="center" spacing={3}>
-        <Grid item xs={8}>
-          <Paper className={classes.paper}>
-            <h1 style={{textDecoration: 'underline'}} >Transactions in Last 30 Days</h1>
+        <Grid item xs={8} >
+          <Paper className={classes.paper} style={{background: 'white'}}>
+            <h1 style={{textDecoration: 'underline', background: 'white'}} >Transactions in Last 30 Days</h1>
           </Paper>
         </Grid>
         <Grid item sm={7}>

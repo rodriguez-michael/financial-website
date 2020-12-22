@@ -40,39 +40,39 @@ const NewAppNav = (props) => {
     <React.Fragment>
       <AppBar style={{ background: '#97D38D' }} >
         <Toolbar>
-          <Typography variant="h4" className={classes.title} component={Link} to={'/'} style={{cursor: 'pointer', color: 'white'}} onMouseOver={changeBackground}>
+          <Typography variant="h5" className={classes.title} component={Link} to={'/'} style={{cursor: 'pointer', color: 'white', fontSize: '27px'}} onMouseOver={changeBackground} >
             Financial Freedom
           </Typography>
-          <IconButton className={classes.button} color="inherit" component={Link} to={'/banking'} onMouseOver={changeBackground}>
+          <IconButton className={classes.button} color="inherit" component={Link} to={'/banking'} onMouseOver={changeBackground} style={{fontSize: '20px'}}>
             Banking
           </IconButton>
-          <IconButton className={classes.button} color="inherit" component={Link} to={'/resources'} onMouseOver={changeBackground}>
+          <IconButton className={classes.button} color="inherit" component={Link} to={'/resources'} onMouseOver={changeBackground} style={{fontSize: '20px'}}>
             Resources
           </IconButton>
-          <IconButton className={classes.button} color="inherit" component={Link} to={'/news'} onMouseOver={changeBackground}>
+          <IconButton className={classes.button} color="inherit" component={Link} to={'/news'} onMouseOver={changeBackground} style={{fontSize: '20px'}}>
             News
           </IconButton>
-          <IconButton className={classes.button} color="inherit" component={Link} to={'/news/favorites'} onMouseOver={changeBackground}>
+          <IconButton className={classes.button} color="inherit" component={Link} to={'/news/favorites'} onMouseOver={changeBackground} style={{fontSize: '20px'}}>
             News Favorites
           </IconButton>
-          <IconButton className={classes.button} color="inherit" component={Link} to={'/stocks'} onMouseOver={changeBackground}>
+          <IconButton className={classes.button} color="inherit" component={Link} to={'/stocks'} onMouseOver={changeBackground} style={{fontSize: '20px'}}>
             Stocks
           </IconButton>
-          <IconButton className={classes.button} color="inherit" component={Link} to={'/stocks/favorites'} onMouseOver={changeBackground}> 
+          <IconButton className={classes.button} color="inherit" component={Link} to={'/stocks/favorites'} onMouseOver={changeBackground} style={{fontSize: '20px'}}> 
           Stock Favorites
           </IconButton>
           {
             userContext.user 
             ?
-            <IconButton className={classes.button} color="inherit" component={Link} to={'/login'} onMouseOver={changeBackground} onClick={handleLogout}>
+            <IconButton className={classes.button} color="inherit" component={Link} to={'/login'} onMouseOver={changeBackground} onClick={handleLogout} style={{fontSize: '20px'}}>
               Logout
             </IconButton>
             :
             <div>
-              <IconButton className={classes.button} color="inherit" component={Link} to={'/login'} onMouseOver={changeBackground}>
+              <IconButton className={classes.button} color="inherit" component={Link} to={'/login'} onMouseOver={changeBackground} style={{fontSize: '20px'}}>
                 Login
               </IconButton>
-              <IconButton className={classes.button} color="inherit" component={Link} to={'/signup'} onMouseOver={changeBackground}>
+              <IconButton className={classes.button} color="inherit" component={Link} to={'/signup'} onMouseOver={changeBackground} style={{fontSize: '20px'}}>
                 Signup
               </IconButton>
             </div>

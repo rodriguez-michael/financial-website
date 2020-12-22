@@ -5,9 +5,10 @@ import UserContext from '../../contexts/UserContext';
 import { Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
 import Balances from '../../components/networth/Balances';
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import Transactions from '../../components/networth/Transactions';
+
+
+import { Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
 
 const NetWorthPage = () => {
 
@@ -87,18 +88,6 @@ const NetWorthPage = () => {
     ))
   }
 
-
-  const useStyles = makeStyles((theme) => ({
-    root: {
-      '& > *': {
-        margin: theme.spacing(1),
-      },
-    },
-  }));
-
-  const classes = useStyles();
-
-
   return (
     <div>
       <hr></hr>
@@ -111,27 +100,47 @@ const NetWorthPage = () => {
         ?
         <div>
           <div>
-            <PlaidLink style={{backgroundColor:'green', color:'white',padding: '10px 15px', borderRadius: '12px', fontSize: '12px',marginTop: '12px'}}
-              token={plaidLinkToken}
-              onSuccess={onSuccess}
-              env='sandbox'
-              // {...}
-            >
-              CONNECT AN ACCOUNT
-            </PlaidLink>
-          </div>
-
-          <div>
-            <div className={classes.root}>
-              <Button variant="contained" color="primary" onClick={getAccountInfo} style={{marginTop: '25px'}}>Networth </Button>
-              <Button variant="contained" color="secondary" onClick={getTransactions} style={{marginTop: '25px'}}>Transactions</Button>
-            </div>
+            <Row style={{display: 'flex', justifyContent:'center'}}>
+              <Col sm="3">
+                <Card body style={{marginTop: '80px', marginBottom: '30px'}}>
+                  <CardTitle tag="h5">Net Worth and Accounts</CardTitle>
+                  <hr></hr>
+                  <CardText>Check account balances and have your net worth calculated automatically.</CardText>
+                  <Button onClick={getAccountInfo} style={{backgroundColor: '#97D38D', color: 'black'}}>Networth</Button>
+                </Card>
+              </Col>
+              <Col sm="3">
+                <Card body style={{marginTop: '25px'}}>
+                  <CardTitle tag="h5">Connect to your Bank</CardTitle>
+                  <hr></hr>
+                  <CardText>Connect to your financial institutions to view your net worth, balances and transactions.</CardText>
+                    <PlaidLink style={{backgroundColor:'green', color:'whitesmoke',padding: '10px 15px', borderRadius: '12px', fontSize: '20px', marginTop: '12px'}}
+                      token={plaidLinkToken}
+                      onSuccess={onSuccess}
+                      env='sandbox'
+                      // {...}
+                    >
+                      Connect an Account
+                    </PlaidLink>
+                </Card>
+              </Col>
+              <Col sm="3">
+                <Card body style={{marginTop: '80px' , marginBottom: '30px'}}>
+                  <CardTitle tag="h5">Transactions</CardTitle>
+                  <hr></hr>
+                  <CardText>View your transactions from the last 30 days to stay on top of your spending.</CardText>
+                  <Button onClick={getTransactions} style={{backgroundColor: '#97D38D', color: 'black'}}>Transactions</Button>
+                </Card>
+              </Col>
+            </Row>
           </div>
 
           <div>
             {!accountInfo && !transactions
             && 
-            <Alert variant={'info'} style={{marginTop: '40px'}}>To view networth or transactions click on the buttons above and make sure you have already connected to your financial institution!</Alert>
+            <div>
+              {/* <Alert variant={'info'} style={{marginTop: '40px'}}>To view networth or transactions click on the buttons above and make sure you have already connected to your financial institution!</Alert> */}
+            </div>
             }
           </div>
             
