@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import StocksAPI from '../../api/StocksAPI.js'
 import StockInfo from '../../components/stocks/StockInfo';
 import { Button } from 'reactstrap';
-import { Alert } from 'react-bootstrap';
+// import { Alert } from 'react-bootstrap';
 import StockFavoriteButton from '../../components/stocks/StockFavoriteButton';
 
 const StocksPage = () => {

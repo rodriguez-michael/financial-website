@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=B612&family=Bungee+Outline&family=Crimson+Pro:wght@200&display=swap');
+
 .App {
   text-align: center;
+  font-family: 'Crimson Pro', serif;
 }
 
 .App-logo {
