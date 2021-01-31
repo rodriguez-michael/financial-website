@@ -1,4 +1,4 @@
-# Financial Freedom Website
+# Financial Freedom
 
 
 
