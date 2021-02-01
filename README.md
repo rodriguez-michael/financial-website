@@ -13,7 +13,7 @@
   <p align="center">
     A financial hub for military service members with resources to help them during hard times.
     <br />
-    <a href="https://www.youtube.com/watch?v=n-48k7n-en0&feature=youtu.be">
+    <a href="https://www.youtube.com/watch?v=n-48k7n-en0&feature=youtu.be" target="_blank">
       Video Demo
     </a>
 
