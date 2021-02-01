@@ -65,7 +65,3 @@ LinkedIn - https://www.linkedin.com/in/rodriguez-michael/
 Email - contact@michaelrodriguez.dev
 
 Personal Site - https://michaelrodriguez.dev/
-
-Project Code: https://github.com/rodriguez-michael/financial-website
-
-Project Demo: https://www.youtube.com/watch?v=n-48k7n-en0&feature=youtu.be
