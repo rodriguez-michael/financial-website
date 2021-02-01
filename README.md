@@ -66,6 +66,6 @@ Email - contact@michaelrodriguez.dev
 
 Personal Site - https://michaelrodriguez.dev/
 
-Project Code Link: https://github.com/rodriguez-michael/financial-website
+Project Code: https://github.com/rodriguez-michael/financial-website
 
-Project Demo Link: https://www.youtube.com/watch?v=n-48k7n-en0&feature=youtu.be
+Project Demo: https://www.youtube.com/watch?v=n-48k7n-en0&feature=youtu.be
