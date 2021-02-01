@@ -16,7 +16,6 @@
     <a href="https://www.youtube.com/watch?v=n-48k7n-en0&feature=youtu.be">
       Video Demo
     </a>
-<br />
 
 
 
